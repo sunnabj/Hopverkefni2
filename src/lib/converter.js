@@ -47,9 +47,11 @@ export function generateHeading(heading) {
 }
 
 export function generateCode(code) {
+  const preElement = document.createElement('pre');
   const codeElement = document.createElement('code');
   codeElement.appendChild(document.createTextNode(code));
-  return codeElement;
+  preElement.appendChild(codeElement);
+  return preElement;
 }
 
 export function generateList(listitem) {
