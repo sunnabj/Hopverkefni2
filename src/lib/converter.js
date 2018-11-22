@@ -61,5 +61,7 @@ export function generateList(listitem) {
 }
 
 export function generateYoutube(youtube) {
-  //geyma...
+  const videoElement = document.createElement('iframe');
+  videoElement.src = youtube;
+  return videoElement;
 }

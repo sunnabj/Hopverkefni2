@@ -1,4 +1,4 @@
-import { generateImage, generateText, generateQuote, generateHeading, generateList, generateCode } from './converter';
+import { generateImage, generateText, generateQuote, generateHeading, generateList, generateCode, generateYoutube } from './converter';
 
 export default class Lecture {
   constructor() {
@@ -60,6 +60,10 @@ export default class Lecture {
     else if (item.type === 'code') {
       const codeElement = generateCode(item.data);
       this.container.appendChild(codeElement);
+    }
+    else if (item.type === 'youtube') {
+      const videoElement = generateYoutube(item.data);
+      this.container.appendChild(videoElement);
     }
 
   }
