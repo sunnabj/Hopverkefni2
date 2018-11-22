@@ -34,14 +34,19 @@ export default class Lecture {
   renderItem(item) {
     if (item.type === 'image') {
       const imageElement = generateImage(item.data);
+      const imageText = document.createElement('h3');
+      imageText.appendChild(document.createTextNode(item.caption));
+      // const imageText = generateText(item.caption);
       this.container.appendChild(imageElement);
+      this.container.appendChild(imageText);
     }
     else if (item.type === 'text') {
       const textElement = generateText(item.data);
       this.container.appendChild(textElement);
     }
     else if (item.type === 'quote') {
-      const quoteElement = generateQuote(item.data);
+      const quoteElement = generateQuote(item);
+      // quoteElement.setAttribute(item.attribute);
       this.container.appendChild(quoteElement);
     }
     else if (item.type === 'heading') {

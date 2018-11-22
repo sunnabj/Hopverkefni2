@@ -27,17 +27,19 @@ export function generateCategory(category) {
   return categoryElement;
 }
 
-export function generateQuote(quote) {
-  const quoteElement = document.createElement('section');
-  quoteElement.appendChild(document.createTextNode(quote));
-  // Vantar set attribute
-  return quoteElement;
-}
-
 export function generateText(text) {
   const textElement = document.createElement('p');
   textElement.appendChild(document.createTextNode(text));
   return textElement;
+}
+
+export function generateQuote(quote) {
+  const quoteElement = document.createElement('blockquote');
+  const quoteText = generateText(quote.data);
+  const quoteAttribute = generateText(quote.attribute);
+  quoteElement.appendChild(quoteText);
+  quoteElement.appendChild(quoteAttribute);
+  return quoteElement;
 }
 
 export function generateHeading(heading) {
