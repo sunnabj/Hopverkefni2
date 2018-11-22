@@ -1,5 +1,5 @@
 import { empty, createElement } from './helpers';
-import { generateImage, generateTitle } from './converter';
+import { generateImage, generateTitle, generateCategory } from './converter';
 
 export default class List {
   constructor() {
@@ -40,11 +40,16 @@ export default class List {
   }
 
   renderItem(item) {
+    
+    const imageElement = generateImage(item.thumbnail);
+    this.container.appendChild(imageElement);
+
+    const categoryElement = generateCategory(item.category);
+    this.container.appendChild(categoryElement);
+
     const titleElement = generateTitle(item.title, item.slug);
     this.container.appendChild(titleElement);
 
-    const imageElement = generateImage(item.thumbnail);
-    this.container.appendChild(imageElement);
   }
   // Viljum skipta þessu upp, eitt fall fyrir mynd, eitt fyrir myndband, o.s.frv.
 

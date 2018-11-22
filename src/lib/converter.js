@@ -21,10 +21,43 @@ export function generateTitle(title, slug) {
   return link;
 }
 
-export function generateQuote() {
-  // eitthvað dót
+export function generateCategory(category) {
+  const categoryElement = document.createElement('h2');
+  categoryElement.appendChild(document.createTextNode(category));
+  return categoryElement;
 }
 
-export function generateText() {
-  // eitthvað dót
+export function generateQuote(quote) {
+  const quoteElement = document.createElement('section');
+  quoteElement.appendChild(document.createTextNode(quote));
+  // Vantar set attribute
+  return quoteElement;
+}
+
+export function generateText(text) {
+  const textElement = document.createElement('p');
+  textElement.appendChild(document.createTextNode(text));
+  return textElement;
+}
+
+export function generateHeading(heading) {
+  const headingElement = document.createElement('h1');
+  headingElement.appendChild(document.createTextNode(heading));
+  return headingElement;
+}
+
+export function generateCode(code) {
+  const codeElement = document.createElement('code');
+  codeElement.appendChild(document.createTextNode(code));
+  return codeElement;
+}
+
+export function generateList(listitem) {
+  const listdata = document.createElement('li');
+  listdata.appendChild(document.createTextNode(listitem));
+  return listdata;
+}
+
+export function generateYoutube(youtube) {
+  //geyma...
 }
