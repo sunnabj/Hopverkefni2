@@ -10,7 +10,7 @@
     "sass": "node-sass --source-map-embed ./src/styles/styles.scss ./dist/styles.css",
     "sass-watch": "node-sass --source-map-embed --watch --recursive src/styles/styles.scss ./dist/styles.css",
     "test": "npm-run-all eslint stylelint",
-    "dev": "npm-run-all --parallel sass sass-watch browser-sync",
+    "dev": "npm-run-all --parallel sass rollup-watch sass-watch browser-sync",
     "babel": "babel src --out-dir dist",
     "babel-watch": "babel src --out-dir dist --watch",
     "rollup": "rollup -c",
