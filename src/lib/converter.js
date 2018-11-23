@@ -1,5 +1,9 @@
 import { createElement } from './helpers';
 
+/**
+ * Hér koma föll sem sjá um að búa til element fyrir sérhverja týpu af elementum á síðunni
+ */
+
 export function generateImage(imagePath) {
   if (!imagePath) {
     return document.createElement('div');
@@ -65,5 +69,7 @@ export function generateList(listitem) {
 export function generateYoutube(youtube) {
   const videoElement = document.createElement('iframe');
   videoElement.src = youtube;
+  videoElement.frameborder = '0';
+  videoElement.allowfullscreen = '0';
   return videoElement;
 }

@@ -5,6 +5,11 @@ export default class Lecture {
     this.container = document.querySelector('.lecture');
     this.url = '../lectures.json';
   }
+/**
+ * 
+ * @param {Kóði fyrir slóðina á tiltekna vefsíðu} slug 
+ * Hleður inn gögnum fyrir hvern fyrirlestur.
+ */
 
   loadLecture(slug) {
     return fetch(this.url)
@@ -22,6 +27,10 @@ export default class Lecture {
         return found;
       });
   }
+  /**
+  *
+  * Fer í gegnum öll JSON gögnin og mappar þau
+  */
 
   renderData(data) {
     console.log(data.content);
