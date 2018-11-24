@@ -12,6 +12,9 @@ export default class Lecture {
  */
 
   loadLecture(slug) {
+    const title = generateHeading(slug);
+    const titlediv = document.querySelector('.header');
+    titlediv.appendChild(title);
     return fetch(this.url)
       .then((res) => {
         if (!res.ok) {
@@ -79,7 +82,11 @@ export default class Lecture {
       const videoElement = generateYoutube(item.data);
       this.container.appendChild(videoElement);
     }
+  }
 
+  finishLecture(e) {
+    console.log('Lecture finished, yeah');
+    console.log(e);
   }
 
   load() {
@@ -87,5 +94,7 @@ export default class Lecture {
     const slug = qs.get('slug');
 
     this.loadLecture(slug).then((data) => this.renderData(data));
+    const finishButton = document.querySelector('.footer__finish');
+    finishButton.addEventListener('click', this.finishLecture);
   }
 }
