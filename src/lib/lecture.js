@@ -1,9 +1,11 @@
 import { generateImage, generateText, generateQuote, generateHeading, generateList, generateCode, generateYoutube } from './converter';
+import { saveLectures, loadSavedLectures } from './storage';
 
 export default class Lecture {
   constructor() {
     this.container = document.querySelector('.lecture');
     this.url = '../lectures.json';
+    this.header = document.querySelector('.header');
   }
 /**
  * 
@@ -12,6 +14,7 @@ export default class Lecture {
  */
 
   loadLecture(slug) {
+    this.page = slug;
     const title = generateHeading(slug);
     const titlediv = document.querySelector('.header');
     titlediv.appendChild(title);
@@ -87,11 +90,16 @@ export default class Lecture {
   finishLecture(e) {
     console.log('Lecture finished, yeah');
     console.log(e);
+    console.log(document.querySelector('.header').textContent);
+
+    saveLectures(document.querySelector('.header').textContent);
   }
 
   load() {
     const qs = new URLSearchParams(window.location.search);
     const slug = qs.get('slug');
+
+    loadSavedLectures();
 
     this.loadLecture(slug).then((data) => this.renderData(data));
     const finishButton = document.querySelector('.footer__finish');

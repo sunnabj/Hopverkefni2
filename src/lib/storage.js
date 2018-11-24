@@ -12,6 +12,9 @@ export function loadSavedLectures() {
 }
 
 export function saveLectures(slug) {
-  lectureArray.push(slug);
-  localStorage.setItem(LOCALSTORAGE_KEY, slug);
+  if (!lectureArray.includes(slug)) {
+    lectureArray.push(slug);
+  }
+  localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(lectureArray));
+  console.log(lectureArray);
 }
