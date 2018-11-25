@@ -7,6 +7,54 @@ export default class Lecture {
     this.url = '../lectures.json';
     this.header = document.querySelector('.header');
   }
+
+  findTitle(slug) {
+    let title;
+    switch (slug) {
+      case 'sagan':
+        title = 'Sagan';
+        break;
+      case 'element':
+        title = 'Element';
+        break;
+      case 'a11y':
+        title = 'Aðgengi';
+        break;
+      case 'syntax':
+        title = 'Málfræði';
+        break;
+      case 'box':
+        title = 'Box model';
+        break;
+      case 'flexbox':
+        title = 'Flexbox';
+        break;
+      case 'responsive':
+        title = 'Skalanleg vefhönnun';
+        break;
+      case 'basic':
+        title = 'Gildi, týpur og virkjar';
+        break;
+      case 'programs':
+        title = 'Forrit';
+        break;
+      case 'functions':
+        title = 'Föll';
+        break;
+      case 'array':
+        title = 'Array & objects';
+        break;
+      case 'dom':
+        title = 'DOM & vafrinn';
+        break;
+      case 'example':
+        title = 'Dæmi';
+        break;
+      default: break;
+    }
+    return title;
+  }
+
 /**
  * 
  * @param {Kóði fyrir slóðina á tiltekna vefsíðu} slug 
@@ -15,13 +63,11 @@ export default class Lecture {
 
   loadLecture(slug) {
     this.page = slug;
-    console.log('slug ', slug);
     const slugArray = slug.split('-');
     const slugCategory = slugArray[0];
     const slugTitle = slugArray[1];
-    console.log('flokkur ', slugCategory);
-    console.log('titill ', slugTitle);
-    const title = generateHeading(slugTitle, 'h1');
+    const realTitle = this.findTitle(slugTitle);
+    const title = generateHeading(realTitle, 'h1');
     const category = generateHeading(slugCategory, 'h2');
     const titlediv = document.querySelector('.header__title');
     titlediv.appendChild(category);
