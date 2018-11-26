@@ -1,5 +1,6 @@
 import { empty, createElement } from './helpers';
 import { generateImage, generateTitle, generateCategory } from './converter';
+import Lecture from './lecture';
 
 export default class List {
   constructor() {
@@ -17,6 +18,30 @@ export default class List {
       });
   }
 
+  renderDataHTML(data) {
+    data.lectures.map((item) => {
+      if (item.category === 'html') {
+        this.renderItem(item);
+      }
+    });
+  }
+
+  renderDataCSS(data) {
+    data.lectures.map((item) => {
+      if (item.category === 'css') {
+        this.renderItem(item);
+      }
+    });
+  }
+
+  renderDataJS(data) {
+    data.lectures.map((item) => {
+      if (item.category === 'javascript') {
+        this.renderItem(item);
+      }
+    });
+  }
+
   /**
    * Sér um að setja allt inn í html-ið
    * @param {*} data 
@@ -27,16 +52,6 @@ export default class List {
     data.lectures.map((item) => {
       this.renderItem(item);
     });
-
-    /*
-    const dataElement = createElement('p', JSON.stringify(data));
-    this.container.appendChild(dataElement);
-    */
-    /*
-    const element = document.createElement('p');
-    element.appendChild(document.createTextNode(JSON.stringify(data)));
-    this.container.appendChild(element);
-    */
   }
 
   renderItem(item) {
@@ -63,9 +78,40 @@ export default class List {
   }
   // Viljum skipta þessu upp, eitt fall fyrir mynd, eitt fyrir myndband, o.s.frv.
 
+  showHTML(e) {
+    const list = new List();
+    console.log(list.container);
+    empty(list.container);
+    list.loadLectures()
+      .then((data) => list.renderDataHTML(data));
+  }
+
+  showCSS(e) {
+    const list = new List();
+    empty(list.container);
+    list.loadLectures()
+      .then((data) => list.renderDataCSS(data));
+  }
+
+  showJavascript(e) {
+    const list = new List();
+    empty(list.container);
+    list.loadLectures()
+      .then((data) => list.renderDataJS(data));
+  }
+
   load() {
     empty(this.container);
     this.loadLectures()
       .then((data) => this.renderData(data));
+
+    const HTMLbutton = document.querySelector('.flokkar__html');
+    HTMLbutton.addEventListener('click', this.showHTML);
+    
+    const CSSbutton = document.querySelector('.flokkar__css');
+    CSSbutton.addEventListener('click', this.showCSS);
+
+    const JSbutton = document.querySelector('.flokkar__javascript');
+    JSbutton.addEventListener('click', this.showJavascript);
   }
 }
