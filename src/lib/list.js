@@ -82,12 +82,45 @@ export default class List {
   }
   // Viljum skipta þessu upp, eitt fall fyrir mynd, eitt fyrir myndband, o.s.frv.
 
+  showNotHTML(e) {
+    const list = new List();
+    empty(list.container);
+    list.loadLectures()
+      .then((data) => list.renderDataCSS(data));
+    list.loadLectures()
+      .then((data) => list.renderDataJS(data));
+
+    const htmlbuttonNew = document.querySelector('.flokkar__htmlGreen');
+    htmlbuttonNew.classList.add('flokkar__htmlGreen--hidden');
+    const htmlbutton = document.querySelector('.flokkar__html');
+    htmlbutton.classList.remove('flokkar__html--hidden');
+  }
+
   showHTML(e) {
     const list = new List();
     console.log(list.container);
     empty(list.container);
     list.loadLectures()
       .then((data) => list.renderDataHTML(data));
+
+    const htmlbutton = document.querySelector('.flokkar__html');
+    htmlbutton.classList.add('flokkar__html--hidden');
+    const htmlbuttonNew = document.querySelector('.flokkar__htmlGreen');
+    htmlbuttonNew.classList.remove('flokkar__htmlGreen--hidden');
+  }
+
+  showNotCSS(e) {
+    const list = new List();
+    empty(list.container);
+    list.loadLectures()
+      .then((data) => list.renderDataHTML(data));
+    list.loadLectures()
+      .then((data) => list.renderDataJS(data));
+
+    const cssbuttonNew = document.querySelector('.flokkar__cssGreen');
+    cssbuttonNew.classList.add('flokkar__cssGreen--hidden');
+    const cssbutton = document.querySelector('.flokkar__css');
+    cssbutton.classList.remove('flokkar__css--hidden');
   }
 
   showCSS(e) {
@@ -95,6 +128,25 @@ export default class List {
     empty(list.container);
     list.loadLectures()
       .then((data) => list.renderDataCSS(data));
+
+    const cssbutton = document.querySelector('.flokkar__css');
+    cssbutton.classList.add('flokkar__css--hidden');
+    const cssbuttonNew = document.querySelector('.flokkar__cssGreen');
+    cssbuttonNew.classList.remove('flokkar__cssGreen--hidden');
+  }
+
+  showNotJS(e) {
+    const list = new List();
+    empty(list.container);
+    list.loadLectures()
+      .then((data) => list.renderDataHTML(data));
+    list.loadLectures()
+      .then((data) => list.renderDataCSS(data));
+
+    const jsbuttonNew = document.querySelector('.flokkar__javascriptGreen');
+    jsbuttonNew.classList.add('flokkar__javascriptGreen--hidden');
+    const jsbutton = document.querySelector('.flokkar__javascript');
+    jsbutton.classList.remove('flokkar__javascript--hidden');
   }
 
   showJavascript(e) {
@@ -102,6 +154,11 @@ export default class List {
     empty(list.container);
     list.loadLectures()
       .then((data) => list.renderDataJS(data));
+
+    const jsbutton = document.querySelector('.flokkar__javascript');
+    jsbutton.classList.add('flokkar__javascript--hidden');
+    const jsbuttonNew = document.querySelector('.flokkar__javascriptGreen');
+    jsbuttonNew.classList.remove('flokkar__javascriptGreen--hidden');
   }
 
   load() {
@@ -111,11 +168,17 @@ export default class List {
 
     const HTMLbutton = document.querySelector('.flokkar__html');
     HTMLbutton.addEventListener('click', this.showHTML);
+    const HTMLbuttonGreen = document.querySelector('.flokkar__htmlGreen');
+    HTMLbuttonGreen.addEventListener('click', this.showNotHTML);
     
     const CSSbutton = document.querySelector('.flokkar__css');
     CSSbutton.addEventListener('click', this.showCSS);
+    const CSSbuttonGreen = document.querySelector('.flokkar__cssGreen');
+    CSSbuttonGreen.addEventListener('click', this.showNotCSS);
 
     const JSbutton = document.querySelector('.flokkar__javascript');
     JSbutton.addEventListener('click', this.showJavascript);
+    const JSbuttonGreen = document.querySelector('.flokkar__javascriptGreen');
+    JSbuttonGreen.addEventListener('click', this.showNotJS);
   }
 }

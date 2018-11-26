@@ -150,16 +150,31 @@ export default class Lecture {
     }
   }
 
+  unfinishLecture(e) {
+    const finishedLecture = document.querySelector('.footer__finished');
+    finishedLecture.classList.add('footer__finished--hidden');
+    // empty(finishedLecture);
+    // const unfinishedLecture = createElement('span', 'Klára fyrirlestur');
+    const unfinishedLecture = document.querySelector('.footer__finish');
+    unfinishedLecture.classList.remove('footer__finish--hidden');
+    // unfinishedLecture.addEventListener('click', this.finishLecture);
+    // const footer = document.querySelector('footer');
+    // footer.insertBefore(unfinishedLecture, footer.childNodes[0]);
+  }
+
   finishLecture(e) {
     console.log(e);
     console.log(document.querySelector('.header').textContent);
     const finishLecture = document.querySelector('.footer__finish');
-    empty(finishLecture);
-    const finishedLecture = createElement('span', 'Fyrirlestur kláraður');
-    finishedLecture.classList.add('footer__finished');
-    finishedLecture.addEventListener('click', this.finishLecture);
-    const footer = document.querySelector('footer');
-    footer.insertBefore(finishedLecture, footer.childNodes[0]);
+    finishLecture.classList.add('footer__finish--hidden')
+    // empty(finishLecture);
+    // const finishedLecture = createElement('span', 'Fyrirlestur kláraður');
+    const finishedLecture = document.querySelector('.footer__finished');
+    finishedLecture.classList.remove('footer__finished--hidden');
+    // finishedLecture.addEventListener('click', this.unfinishLecture);
+    // const footer = document.querySelector('footer');
+    // footer.insertBefore(finishedLecture, footer.childNodes[0]);
+
     saveLectures(document.querySelector('.header').textContent);
   }
 
@@ -172,5 +187,7 @@ export default class Lecture {
     this.loadLecture(slug).then((data) => this.renderData(data));
     const finishButton = document.querySelector('.footer__finish');
     finishButton.addEventListener('click', this.finishLecture);
+    const finishedButton = document.querySelector('.footer__finished');
+    finishedButton.addEventListener('click', this.unfinishLecture);
   }
 }

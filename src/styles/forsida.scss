@@ -4,6 +4,29 @@
     display: flex;
     justify-content: space-evenly;
 }
+.flokkar__html--hidden {
+    display: none;
+}
+
+.flokkar__htmlGreen--hidden {
+    display: none;
+}
+
+.flokkar__css--hidden {
+    display: none;
+}
+
+.flokkar__cssGreen--hidden {
+    display: none;
+}
+
+.flokkar__javascript--hidden {
+    display: none;
+}
+
+.flokkar__javascriptGreen--hidden {
+    display: none;
+}
 
 button {
     // width: 6 * $gutter;
