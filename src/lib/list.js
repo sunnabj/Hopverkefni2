@@ -40,15 +40,25 @@ export default class List {
   }
 
   renderItem(item) {
-    
+    const lecturediv = document.createElement('div');
+    lecturediv.classList.add('fyrirlestur');
+    this.container.appendChild(lecturediv);
+
     const imageElement = generateImage(item.thumbnail);
-    this.container.appendChild(imageElement);
+    imageElement.classList.add('thumbnail');
+    lecturediv.appendChild(imageElement);
 
+    const categorydiv = document.createElement('div');
+    categorydiv.classList.add('category');
+    lecturediv.appendChild(categorydiv);
     const categoryElement = generateCategory(item.category);
-    this.container.appendChild(categoryElement);
+    categorydiv.appendChild(categoryElement);
 
+    const titlediv = document.createElement('div');
+    titlediv.classList.add('title');
+    lecturediv.appendChild(titlediv);
     const titleElement = generateTitle(item.title, item.slug);
-    this.container.appendChild(titleElement);
+    titlediv.appendChild(titleElement);
 
   }
   // Viljum skipta þessu upp, eitt fall fyrir mynd, eitt fyrir myndband, o.s.frv.
