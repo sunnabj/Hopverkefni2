@@ -1,0 +1,24 @@
+@import "config.scss";
+
+h2 {
+    font-family: $font-heading;
+}
+
+header {
+    font-family: $font-heading;
+    width: 100%;
+    margin-bottom: 2*$gutter;
+    position: relative;
+    }
+.protection{
+    position: absolute;
+    background-color: rgba(170, 170, 170, 0.9);
+    width: 100%;
+}
+.header__title {
+    position: absolute;
+    bottom: 45%;
+    right: 45%;
+    // display: flex;
+    // justify: center;
+}
