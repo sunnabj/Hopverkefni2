@@ -159,7 +159,7 @@ export default class Lecture {
     finishedLecture.classList.add('footer__finished');
     finishedLecture.addEventListener('click', this.finishLecture);
     const footer = document.querySelector('footer');
-    footer.appendChild(finishedLecture);
+    footer.insertBefore(finishedLecture, footer.childNodes[0]);
     saveLectures(document.querySelector('.header').textContent);
   }
 

@@ -63,15 +63,19 @@ export default class List {
     imageElement.classList.add('thumbnail');
     lecturediv.appendChild(imageElement);
 
+    const greytitlediv = document.createElement('div');
+    greytitlediv.classList.add('fyrirlestur__titlecat');
+    lecturediv.appendChild(greytitlediv);
+
     const categorydiv = document.createElement('div');
     categorydiv.classList.add('category');
-    lecturediv.appendChild(categorydiv);
+    greytitlediv.appendChild(categorydiv);
     const categoryElement = generateCategory(item.category);
     categorydiv.appendChild(categoryElement);
 
     const titlediv = document.createElement('div');
     titlediv.classList.add('title');
-    lecturediv.appendChild(titlediv);
+    greytitlediv.appendChild(titlediv);
     const titleElement = generateTitle(item.title, item.slug);
     titlediv.appendChild(titleElement);
 
