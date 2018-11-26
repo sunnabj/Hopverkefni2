@@ -1,25 +1,34 @@
 @import "config.scss";
 
-// h2 {
-//     font-family: $font-heading;
-// }
+.flokkar { 
+    display: flex;
+    justify-content: space-evenly;
+}
 
-// header {
-//     // position: relative;
-//     font-family: $font-heading;
-//     width: 100%;
-//     margin-bottom: 2*$gutter;
-//     }
-// .protection{
-//     position: absolute;
-//     background-color: rgba(170, 170, 170, 0.9);
-//     width: 100%;
-// }
-// .header__title {
-//     position: absolute;
-//     bottom: 45%;
-//     right: 45%;
-//     // display: flex;
-//     // justify: center;
-// }
+button {
+    // width: 6 * $gutter;
+    // height: 100%;
+    // margin-right: ($gutter / 4);
+    // margin-left: $gutter / 4;
+    background-color: $color-grar2;
+    border: $color-grar2;
+    border-radius: 10px;
+    transition: background-color $transition;
+    padding: $gutter/2;
+    font-family: $font-heading;
+    font-weight: bold;
+    margin-bottom: $gutter;
 
+    &:hover {
+        background-color: $color-grar3;
+        border-color: $color-grar3;
+    }
+}
+.flokkar__htmlGreen {
+    background-color: $color-graenn1;
+    border-color: $color-graenn1;
+    &:hover {
+        background-color: $color-graenn2;
+        border-color: $color-graenn2;
+    }
+}
