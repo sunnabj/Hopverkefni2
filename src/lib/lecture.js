@@ -7,6 +7,54 @@ export default class Lecture {
     this.url = '../lectures.json';
     this.header = document.querySelector('.header');
   }
+
+  findTitle(slug) {
+    let title;
+    switch (slug) {
+      case 'sagan':
+        title = 'Sagan';
+        break;
+      case 'element':
+        title = 'Element';
+        break;
+      case 'a11y':
+        title = 'Aðgengi';
+        break;
+      case 'syntax':
+        title = 'Málfræði';
+        break;
+      case 'box':
+        title = 'Box model';
+        break;
+      case 'flexbox':
+        title = 'Flexbox';
+        break;
+      case 'responsive':
+        title = 'Skalanleg vefhönnun';
+        break;
+      case 'basic':
+        title = 'Gildi, týpur og virkjar';
+        break;
+      case 'programs':
+        title = 'Forrit';
+        break;
+      case 'functions':
+        title = 'Föll';
+        break;
+      case 'array':
+        title = 'Array & objects';
+        break;
+      case 'dom':
+        title = 'DOM & vafrinn';
+        break;
+      case 'example':
+        title = 'Dæmi';
+        break;
+      default: break;
+    }
+    return title;
+  }
+
 /**
  * 
  * @param {Kóði fyrir slóðina á tiltekna vefsíðu} slug 
@@ -15,8 +63,14 @@ export default class Lecture {
 
   loadLecture(slug) {
     this.page = slug;
-    const title = generateHeading(slug);
-    const titlediv = document.querySelector('.header');
+    const slugArray = slug.split('-');
+    const slugCategory = slugArray[0];
+    const slugTitle = slugArray[1];
+    const realTitle = this.findTitle(slugTitle);
+    const title = generateHeading(realTitle, 'h1');
+    const category = generateHeading(slugCategory, 'h2');
+    const titlediv = document.querySelector('.header__title');
+    titlediv.appendChild(category);
     titlediv.appendChild(title);
     return fetch(this.url)
       .then((res) => {
@@ -49,7 +103,9 @@ export default class Lecture {
   renderItem(item) {
     if (item.type === 'image') {
       const imageElement = generateImage(item.data);
-      const imageText = document.createElement('h3');
+      imageElement.classList.add('img');
+      const imageText = document.createElement('p');
+      imageText.classList.add('image__caption');
       imageText.appendChild(document.createTextNode(item.caption));
       // const imageText = generateText(item.caption);
       this.container.appendChild(imageElement);
@@ -57,6 +113,7 @@ export default class Lecture {
     }
     else if (item.type === 'text') {
       const textElement = generateText(item.data);
+      textElement.classList.add('text');
       this.container.appendChild(textElement);
     }
     else if (item.type === 'quote') {
@@ -65,24 +122,29 @@ export default class Lecture {
       this.container.appendChild(quoteElement);
     }
     else if (item.type === 'heading') {
-      const headingElement = generateHeading(item.data);
+      const headingElement = generateHeading(item.data, 'h1');
+      headingElement.classList.add('heading');
       this.container.appendChild(headingElement);
     }
     else if (item.type === 'list') {
       const listElement = document.createElement('ul');
+      listElement.classList.add('list');
 
       for (let i = 0; i < item.data.length; i += 1) {
         const listitem = generateList(item.data[i]);
+        listitem.classList.add('list__tag');
         listElement.appendChild(listitem);
         this.container.appendChild(listElement);
       }
     }
     else if (item.type === 'code') {
       const codeElement = generateCode(item.data);
+      codeElement.classList.add('code');
       this.container.appendChild(codeElement);
     }
     else if (item.type === 'youtube') {
       const videoElement = generateYoutube(item.data);
+      videoElement.classList.add('youtube');
       this.container.appendChild(videoElement);
     }
   }

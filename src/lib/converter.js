@@ -39,15 +39,18 @@ export function generateText(text) {
 
 export function generateQuote(quote) {
   const quoteElement = document.createElement('blockquote');
+  quoteElement.classList.add('quote');
   const quoteText = generateText(quote.data);
+  quoteText.classList.add('quote__data');
   const quoteAttribute = generateText(quote.attribute);
+  quoteAttribute.classList.add('quote__attribute');
   quoteElement.appendChild(quoteText);
   quoteElement.appendChild(quoteAttribute);
   return quoteElement;
 }
 
-export function generateHeading(heading) {
-  const headingElement = document.createElement('h1');
+export function generateHeading(heading, size) {
+  const headingElement = document.createElement(size);
   headingElement.appendChild(document.createTextNode(heading));
   return headingElement;
 }
