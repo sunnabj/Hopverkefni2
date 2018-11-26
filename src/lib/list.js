@@ -1,6 +1,7 @@
 import { empty, createElement } from './helpers';
 import { generateImage, generateTitle, generateCategory } from './converter';
 import Lecture from './lecture';
+import { clear } from './storage';
 
 export default class List {
   constructor() {
@@ -161,6 +162,10 @@ export default class List {
     jsbuttonNew.classList.remove('flokkar__javascriptGreen--hidden');
   }
 
+  clearLocalStorage() {
+    clear();
+  }
+
   load() {
     empty(this.container);
     this.loadLectures()
@@ -180,5 +185,8 @@ export default class List {
     JSbutton.addEventListener('click', this.showJavascript);
     const JSbuttonGreen = document.querySelector('.flokkar__javascriptGreen');
     JSbuttonGreen.addEventListener('click', this.showNotJS);
+
+    const clearLocalst = document.querySelector('.clearLocal');
+    clearLocalst.addEventListener('click', this.clearLocalStorage);
   }
 }

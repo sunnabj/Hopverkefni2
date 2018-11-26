@@ -8,7 +8,8 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
 </head>
-<header>
+<body>
+  <header>
     <div class="header__image">
       <img class="img" src="img/header.jpg">
     </div>
@@ -18,30 +19,35 @@
     </div>
     <div class="protection"></div>
   </header>
-<body>
-  <div class="flokkar">
-    <div class="flokkar__html">
-      <button class="button">HTML</button>
+  <main>
+    <div class="flokkar">
+      <div class="flokkar__html">
+        <button class="button">HTML</button>
+      </div>
+      <div class="flokkar__htmlGreen flokkar__htmlGreen--hidden">
+        <button class="button">HTML</button>
+      </div>
+      <div class="flokkar__css">
+        <button class="button">CSS</button>
+      </div>
+      <div class="flokkar__cssGreen flokkar__cssGreen--hidden">
+        <button class="button">CSS</button>
+      </div>
+      <div class="flokkar__javascript">
+        <button class="button">Javascript</button>
+      </div>
+      <div class="flokkar__javascriptGreen flokkar__javascriptGreen--hidden">
+        <button class="javascript">Javascript</button>
+      </div>
     </div>
-    <div class="flokkar__htmlGreen flokkar__htmlGreen--hidden">
-      <button class="button">HTML</button>
-    </div>
-    <div class="flokkar__css">
-      <button class="button">CSS</button>
-    </div>
-    <div class="flokkar__cssGreen flokkar__cssGreen--hidden">
-      <button class="button">CSS</button>
-    </div>
-    <div class="flokkar__javascript">
-      <button class="button">Javascript</button>
-    </div>
-    <div class="flokkar__javascriptGreen flokkar__javascriptGreen--hidden">
-      <button class="javascript">Javascript</button>
-    </div>
-  </div>
-  <div class="list"> <!--Hingað hendum við inn upplýsingum-->
+    <div class="list"> <!--Hingað hendum við inn upplýsingum-->
 
-  </div>
+    </div>
+  </main>
+  <footer>
+    <button class="clearLocal">Hreinsa localStorage</button>
+  </footer>
+
   <script src="./dist/bundle.js"></script>
 </body>
 </html>

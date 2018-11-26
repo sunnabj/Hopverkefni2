@@ -73,6 +73,14 @@ export default class Lecture {
     const titlediv = document.querySelector('.header__title');
     titlediv.appendChild(category);
     titlediv.appendChild(title);
+    const savedArray = loadSavedLectures();
+    if (savedArray.includes(document.querySelector('.header').textContent)) {
+      const finishLecture = document.querySelector('.footer__finish');
+      finishLecture.classList.add('footer__finish--hidden')
+      const finishedLecture = document.querySelector('.footer__finished');
+      finishedLecture.classList.remove('footer__finished--hidden');
+    }
+
     return fetch(this.url)
       .then((res) => {
         if (!res.ok) {
@@ -108,7 +116,6 @@ export default class Lecture {
       const imageText = document.createElement('p');
       imageText.classList.add('image__caption');
       imageText.appendChild(document.createTextNode(item.caption));
-      // const imageText = generateText(item.caption);
       this.container.appendChild(imageElement);
       this.container.appendChild(imageText);
     }
@@ -119,7 +126,6 @@ export default class Lecture {
     }
     else if (item.type === 'quote') {
       const quoteElement = generateQuote(item);
-      // quoteElement.setAttribute(item.attribute);
       this.container.appendChild(quoteElement);
     }
     else if (item.type === 'heading') {
@@ -153,28 +159,16 @@ export default class Lecture {
   unfinishLecture(e) {
     const finishedLecture = document.querySelector('.footer__finished');
     finishedLecture.classList.add('footer__finished--hidden');
-    // empty(finishedLecture);
-    // const unfinishedLecture = createElement('span', 'Klára fyrirlestur');
     const unfinishedLecture = document.querySelector('.footer__finish');
     unfinishedLecture.classList.remove('footer__finish--hidden');
-    // unfinishedLecture.addEventListener('click', this.finishLecture);
-    // const footer = document.querySelector('footer');
-    // footer.insertBefore(unfinishedLecture, footer.childNodes[0]);
     removeLectures(document.querySelector('.header').textContent);
   }
 
   finishLecture(e) {
-    console.log(e);
-    console.log(document.querySelector('.header').textContent);
     const finishLecture = document.querySelector('.footer__finish');
     finishLecture.classList.add('footer__finish--hidden')
-    // empty(finishLecture);
-    // const finishedLecture = createElement('span', 'Fyrirlestur kláraður');
     const finishedLecture = document.querySelector('.footer__finished');
     finishedLecture.classList.remove('footer__finished--hidden');
-    // finishedLecture.addEventListener('click', this.unfinishLecture);
-    // const footer = document.querySelector('footer');
-    // footer.insertBefore(finishedLecture, footer.childNodes[0]);
 
     saveLectures(document.querySelector('.header').textContent);
   }

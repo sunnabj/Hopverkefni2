@@ -13,5 +13,5 @@
 ## Virkni ##
 
 * Láta HTML, CSS og Javascript takka velja rétt þegar ýtt er á marga saman í einu
-* Bæta event handlera á Klára fyrirlestur og til baka - fá tjekk ör á fyrirlestur
+* Fyrirlestrar vistast nú í localstorage, og tjekkmerkið sést á þeim, en þarf að ná að sýna það á forsíðu
 
