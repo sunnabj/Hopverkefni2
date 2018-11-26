@@ -1,5 +1,5 @@
 import { generateImage, generateText, generateQuote, generateHeading, generateList, generateCode, generateYoutube } from './converter';
-import { saveLectures, loadSavedLectures } from './storage';
+import { saveLectures, loadSavedLectures, removeLectures } from './storage';
 import { empty, createElement } from './helpers';
 
 export default class Lecture {
@@ -160,6 +160,7 @@ export default class Lecture {
     // unfinishedLecture.addEventListener('click', this.finishLecture);
     // const footer = document.querySelector('footer');
     // footer.insertBefore(unfinishedLecture, footer.childNodes[0]);
+    removeLectures(document.querySelector('.header').textContent);
   }
 
   finishLecture(e) {

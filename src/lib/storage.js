@@ -18,3 +18,17 @@ export function saveLectures(slug) {
   localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(lectureArray));
   console.log(lectureArray);
 }
+
+export function removeLectures(slug) {
+  const index = lectureArray.indexOf(slug);
+  if (index > -1) {
+    lectureArray.splice(index, 1);
+  }
+  console.log(lectureArray);
+  localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(lectureArray));
+}
+
+export function clear() {
+  window.localStorage.clear();
+  lectureArray = [];
+}
