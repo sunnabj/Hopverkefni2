@@ -3,9 +3,7 @@
 
 ## Útlit ##
 
-* Harðkóða html fyrir forsíðu
-* Græja CSS fyrir forsíðu
-* Hanna klasanöfn og svoleiðis fyrir innflutt html út frá harðkóðaðri hönnun
+* Halda áfram að græja CSS fyrir forsíðu
 * Bæta útlit á fyrirlestrasíðum
     * Miðja allt
     * Láta youtube ná yfir alla síðuna
@@ -14,6 +12,6 @@
 
 ## Virkni ##
 
-* Finna út hvernig á að velja mismunandi flokka af html
-* Hanna útfærslu á kláruðum fyrirlestrum - localStorage
+* Láta HTML, CSS og Javascript takka velja rétt þegar ýtt er á marga saman í einu
+* Bæta event handlera á Klára fyrirlestur og til baka - fá tjekk ör á fyrirlestur
 
