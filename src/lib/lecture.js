@@ -1,5 +1,6 @@
 import { generateImage, generateText, generateQuote, generateHeading, generateList, generateCode, generateYoutube } from './converter';
 import { saveLectures, loadSavedLectures } from './storage';
+import { empty, createElement } from './helpers';
 
 export default class Lecture {
   constructor() {
@@ -150,10 +151,15 @@ export default class Lecture {
   }
 
   finishLecture(e) {
-    console.log('Lecture finished, yeah');
     console.log(e);
     console.log(document.querySelector('.header').textContent);
-
+    const finishLecture = document.querySelector('.footer__finish');
+    empty(finishLecture);
+    const finishedLecture = createElement('span', 'Fyrirlestur kláraður');
+    finishedLecture.classList.add('footer__finished');
+    finishedLecture.addEventListener('click', this.finishLecture);
+    const footer = document.querySelector('footer');
+    footer.insertBefore(finishedLecture, footer.childNodes[0]);
     saveLectures(document.querySelector('.header').textContent);
   }
 
