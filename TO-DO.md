@@ -14,9 +14,9 @@
 * Komið! En Refactor-a og kommenta kóða
 
 ## FORSIDA ## 
-* laga ekki thumbnail
-* header
-* poppar upp ef maður ýtir á takka
+* laga ekki thumbnail CHECK ALMOST
+* header CHECK
+* poppar upp ef maður ýtir á takka BAIL
 * laga check :PPPPPP
 
 ## FYRIRLESTRAR ##
