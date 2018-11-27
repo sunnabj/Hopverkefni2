@@ -1,6 +1,6 @@
 import { empty, createElement } from './helpers';
 import { generateImage, generateTitle, generateCategory } from './converter';
-import Lecture from './lecture';
+import Lecture from './lecture'; // Hvað er málið?
 import { clear, saveTypes, removeTypes, loadSavedTypes } from './storage';
 
 export default class List {
