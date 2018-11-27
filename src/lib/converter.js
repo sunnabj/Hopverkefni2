@@ -32,11 +32,10 @@ export function generateCategory(category) {
 }
 
 export function generateText(text) {
-  const preElement = document.createElement('pre');
   const textElement = document.createElement('p');
   textElement.appendChild(document.createTextNode(text));
-  preElement.appendChild(textElement);
-  return preElement;
+  textElement.classList.add('text');
+  return textElement;
 }
 
 export function generateQuote(quote) {

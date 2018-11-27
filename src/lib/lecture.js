@@ -123,7 +123,6 @@ export default class Lecture {
     }
     else if (item.type === 'text') {
       const textElement = generateText(item.data);
-      textElement.classList.add('text');
       this.container.appendChild(textElement);
     }
     else if (item.type === 'quote') {
