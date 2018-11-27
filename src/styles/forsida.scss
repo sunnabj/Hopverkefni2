@@ -56,6 +56,17 @@ button {
         border-color: $color-graenn2;
     }
 }
+.fyrirlestur__titlecat {
+    display: flex;
+    flex-direction: column;
+}
+.check {
+    display: flex;
+    //position: absolute;
+    justify-content: flex-end;
+    //align-self: center;
+    //flex-grow: 1;
+}
 
 .fyrirlestur__text {
     background-color: $color-grar1;
@@ -64,6 +75,9 @@ button {
     padding-bottom: 0.5*$gutter;
     padding-left: 0.5*$gutter;
     max-width: 443px;
+    display: flex;
+    flex-direction: row;
+    position: relative;
     //position:absolute;
     @media (min-width: 500px) {
         @include columns(12);
@@ -79,5 +93,8 @@ a {
     color: $color-svartur;
     text-decoration: none;
     font-family: $font-heading;
+}
+.thumbnail {
+    padding-left: 0px;
 }
 
