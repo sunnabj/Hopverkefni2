@@ -1,80 +1,81 @@
 @import "config.scss";
 
+.lecture {
+  @include columns(12);
+}
 
-section {
-    padding-left: $gutter/2;
-    padding-right: $gutter/2;
-}
-.lecture{
-    @include columns(12);
-}
 .youtube {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 2*$gutter;
-    @include columns(12);
-    height: 50vh;
-    @media (min-width: 600px) {
-        height: 60vh;
-    }
-    @media (min-width: 800px) {
-        height: 70vh;
-    }
+  display: flex;
+  justify-content: center;
+  height: 50vh;
+  margin-bottom: 2*$gutter;
+  @include columns(12);
+  @media (min-width: 600px) {
+    height: 60vh;
+  }
+  @media (min-width: 800px) {
+    height: 70vh;
+  }
 }
+
 .text {
-    font-family: $font-main;
-    margin-bottom: 2*$gutter;
-    margin-left: $gutter/2;
-    margin-right: $gutter/2;
-    @include columns(12);
+  margin-right: $gutter/2;
+  margin-bottom: 2*$gutter;
+  margin-left: $gutter/2;
+  font-family: $font-main;
+  @include columns(12);
+  white-space: pre-line;
 }
+
 .quote {
-    font-family: $font-main;
-    background-color: $color-grar1;
-    padding-top: $gutter;
-    padding-bottom: $gutter;
-    padding-left: $gutter/2;
-    margin-bottom: 2*$gutter;
+  padding-top: $gutter;
+  padding-bottom: $gutter/2;
+  padding-left: $gutter/2;
+  margin-bottom: 2*$gutter;
+  font-family: $font-main;
+  background-color: $color-grar1;
 }
-.qoute__attribute {
-    margin-top: $gutter/2;
-    font-style: italic;
+
+.quote__attribute {
+  font-style: italic;
 }
+
 .image__caption {
-    font-style: italic;
-    margin-bottom: $gutter;
-    @include columns(12);
+  margin-bottom: $gutter/2;
+  font-style: italic;
+  @include columns(12);
 }
+
 .list {
-    padding-left: $gutter/2;
-    margin-bottom: $gutter;
+  padding-left: $gutter/2;
+  margin-bottom: $gutter;
 }
+
 .code {
-    margin-left: $gutter;
+  margin-left: $gutter;
 }
 
 .footer {
-    font-family: $font-heading;
-    margin-bottom: 3*$gutter;
-    margin-top: 3*$gutter;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    &__back{
-        margin-top: 2*$gutter;
-    }
-   
+  display: flex;
+  margin-top: 3*$gutter;
+  margin-bottom: 3*$gutter;
+  font-family: $font-heading;
+  flex-direction: column;
+  align-items: center;
+
+  &__back {
+    margin-top: 2*$gutter;
+  }
 }
 
-
 .footer__finished {
-    color: $color-graenn1;
+  color: $color-graenn1;
 }
 
 .footer__finished--hidden {
-    display: none;
+  display: none;
 }
 
 .footer__finish--hidden {
-    display: none;
+  display: none;
 }

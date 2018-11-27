@@ -1,7 +1,7 @@
 $max-width: 1200px;
 $gutter: 20px;
-$font-main: 'Lora', 'Times-New-Roman', serif;
-$font-heading: 'Roboto Mono', monospace;
+$font-main: "Lora", "Times-New-Roman", serif;
+$font-heading: "Roboto Mono", monospace;
 
 $color-svartur: #000;
 $color-grar3: #999;
@@ -15,25 +15,12 @@ $color-bleikur: #cc9694;
 // leturstærðir 16, 24, 32, 48
 // bil eru hálf, heilt, tvöfalt eða þrefald margfeldi af gutter
 
-//hreyfingar gerast á 300ms með ease-in-out
+// hreyfingar gerast á 300ms með ease-in-out
 $transition: 300ms ease-in-out;
 
 @mixin columns($col: 1) {
-  //margföldum með 1% til að breyta gildi í % gildi
+  // margföldum með 1% til að breyta gildi í % gildi
   width: ($col /12 * 100) * 1%;
   padding-right: $gutter/2;
   padding-left: $gutter/2;
 }
-/* config úr hóp1
-
-@mixin row() {
-  display: flex;
-  margin-right: -($gutter / 2);
-  margin-left: -($gutter / 2);
-}
-
-
-@mixin offset-left($cols: 0) {
-  margin-left: ($cols/12 * 100) * 1%;
-}
-*/
