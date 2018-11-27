@@ -48,16 +48,29 @@ button {
         border-color: $color-grar3;
     }
 }
-button:focus {
-    background: pink;
-}
-button.flokkar__htmlGreen:focus {
+.flokkar__htmlGreen {
         background-color: $color-graenn1;
         border-color: $color-graenn1;
     &:hover {
-        //background-color: $color-graenn2;
+        background-color: $color-graenn2;
         border-color: $color-graenn2;
     }
+}
+.flokkar__cssGreen {
+    background-color: $color-graenn1;
+    border-color: $color-graenn1;
+&:hover {
+    background-color: $color-graenn2;
+    border-color: $color-graenn2;
+}
+}
+.flokkar__javascriptGreen {
+    background-color: $color-graenn1;
+    border-color: $color-graenn1;
+&:hover {
+    background-color: $color-graenn2;
+    border-color: $color-graenn2;
+}
 }
 
 .fyrirlestur__titlecat {
