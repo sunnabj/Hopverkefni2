@@ -18,7 +18,7 @@ export function generateTitle(title, slug) {
   const link = document.createElement('a');
   link.href = `/fyrirlestur.html?slug=${slug}`;
   // slug = linkurinn sem við ætlum að hafa
-  const titleElement = document.createElement('h1');
+  const titleElement = document.createElement('h2');
   titleElement.appendChild(document.createTextNode(title));
 
   link.appendChild(titleElement);
@@ -26,17 +26,16 @@ export function generateTitle(title, slug) {
 }
 
 export function generateCategory(category) {
-  const categoryElement = document.createElement('h2');
+  const categoryElement = document.createElement('h3');
   categoryElement.appendChild(document.createTextNode(category));
   return categoryElement;
 }
 
 export function generateText(text) {
-  const preElement = document.createElement('pre');
   const textElement = document.createElement('p');
   textElement.appendChild(document.createTextNode(text));
-  preElement.appendChild(textElement);
-  return preElement;
+  textElement.classList.add('text');
+  return textElement;
 }
 
 export function generateQuote(quote) {

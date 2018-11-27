@@ -123,7 +123,6 @@ export default class Lecture {
     }
     else if (item.type === 'text') {
       const textElement = generateText(item.data);
-      textElement.classList.add('text');
       this.container.appendChild(textElement);
     }
     else if (item.type === 'quote') {
@@ -131,7 +130,7 @@ export default class Lecture {
       this.container.appendChild(quoteElement);
     }
     else if (item.type === 'heading') {
-      const headingElement = generateHeading(item.data, 'h1');
+      const headingElement = generateHeading(item.data, 'h2');
       headingElement.classList.add('heading');
       this.container.appendChild(headingElement);
     }
