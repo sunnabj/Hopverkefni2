@@ -12,3 +12,15 @@
 ## Virkni ##
 
 * Komið! En Refactor-a og kommenta kóða
+
+FORSIDA
+liti á tökkum 
+laga ekki thumbnail
+header
+footer sunna taka út
+poppar upp ef maður ýtir á takka
+laga check :PPPPPP
+
+FYRIRLESTRAR
+taka text af quote data og attribute svo við getum lagað 
+bil i quote :PPPPP

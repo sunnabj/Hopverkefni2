@@ -60,6 +60,24 @@ button {
     display: flex;
     flex-direction: column;
 }
+.list {
+    @media (min-width: 500px) {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}
+.fyrirlestur {
+    @media (min-width: 500px) {
+        @include columns(6);
+        display: flex;
+        flex-direction: column;
+       //  margin-right: 0px;
+    }
+    @media (min-width: 900px) {
+        @include columns(4);
+    }
+}
 .check {
     display: flex;
     //position: absolute;
@@ -71,19 +89,19 @@ button {
 .fyrirlestur__text {
     background-color: $color-grar1;
     margin-bottom: 2*$gutter;
-    padding-top: 0.5*$gutter;
+    padding-top: $gutter;
     padding-bottom: 0.5*$gutter;
     padding-left: 0.5*$gutter;
-    max-width: 443px;
+    //max-width: 443px;
     display: flex;
     flex-direction: row;
     position: relative;
+    @include columns(12);
     //position:absolute;
     @media (min-width: 500px) {
-        @include columns(12);
-        flex-wrap: wrap;
+        
     }
-}
+    }
 .category {
     font-family: $font-heading;
     text-transform: uppercase;
