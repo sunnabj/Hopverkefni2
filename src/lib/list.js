@@ -1,6 +1,5 @@
 import { empty, createElement } from './helpers';
 import { generateImage, generateTitle, generateCategory } from './converter';
-import Lecture from './lecture'; // Hvað er málið?
 import { clear, saveTypes, removeTypes, loadSavedTypes, loadSavedLectures } from './storage';
 
 export default class List {
@@ -54,6 +53,8 @@ export default class List {
       this.renderItem(item);
     });
   }
+// Element, Gildi týpur og virkjar og DOM öðruvísi
+// slug: html-element, js-basic, js-dom
 
   renderItem(item) {
     console.log('item í renderItem ', item);
@@ -61,37 +62,63 @@ export default class List {
     lecturediv.classList.add('fyrirlestur');
     this.container.appendChild(lecturediv);
 
-    const imageElement = generateImage(item.thumbnail);
-    imageElement.classList.add('thumbnail');
-    lecturediv.appendChild(imageElement);
+    if (item.slug === 'html-element' || item.slug === 'js-basic' || item.slug === 'js-dom') {
+      const greydiv = document.createElement('div');
+      greydiv.classList.add('greydiv');
 
-    const textdiv = document.createElement('div');
-    textdiv.classList.add('fyrirlestur__text');
-    lecturediv.appendChild(textdiv);
+      const categorydiv = document.createElement('div');
+      categorydiv.classList.add('category');
 
-    const titlecatdiv = document.createElement('div');
-    titlecatdiv.classList.add('fyrirlestur__titlecat');
-    textdiv.appendChild(titlecatdiv);
+      const categoryElement = generateCategory(item.category);
+      categorydiv.appendChild(categoryElement);
+      greydiv.appendChild(categorydiv);
+      const titlediv = document.createElement('div');
+      titlediv.classList.add('title');
+      const titleElement = generateTitle(item.title, item.slug);
+      titlediv.appendChild(titleElement);
+      greydiv.appendChild(titlediv);
 
-    const categorydiv = document.createElement('div');
-    categorydiv.classList.add('category');
-    titlecatdiv.appendChild(categorydiv);
-    const categoryElement = generateCategory(item.category);
-    categorydiv.appendChild(categoryElement);
+      lecturediv.appendChild(greydiv);
 
-    const titlediv = document.createElement('div');
-    titlediv.classList.add('title');
-    titlecatdiv.appendChild(titlediv);
-    const titleElement = generateTitle(item.title, item.slug);
-    titlediv.appendChild(titleElement);
-
-    if (loadSavedLectures().includes(item.title)) {
-      const checkdiv = document.createElement('div');
-      checkdiv.appendChild(document.createTextNode('\u2713'));
-      checkdiv.classList.add('check');
-      textdiv.appendChild(checkdiv);
+      if (loadSavedLectures().includes(item.title)) {
+        const checkdiv = document.createElement('div');
+        checkdiv.appendChild(document.createTextNode('\u2713'));
+        checkdiv.classList.add('check');
+        greydiv.appendChild(checkdiv);
+      }
     }
+    else {
+      const imageElement = generateImage(item.thumbnail);
+      imageElement.classList.add('thumbnail');
+      lecturediv.appendChild(imageElement);
 
+      const textdiv = document.createElement('div');
+      textdiv.classList.add('fyrirlestur__text');
+      lecturediv.appendChild(textdiv);
+
+      const titlecatdiv = document.createElement('div');
+      titlecatdiv.classList.add('fyrirlestur__titlecat');
+      textdiv.appendChild(titlecatdiv);
+
+      const categorydiv = document.createElement('div');
+      categorydiv.classList.add('category');
+      titlecatdiv.appendChild(categorydiv);
+      const categoryElement = generateCategory(item.category);
+      categorydiv.appendChild(categoryElement);
+
+      const titlediv = document.createElement('div');
+      titlediv.classList.add('title');
+      titlecatdiv.appendChild(titlediv);
+      const titleElement = generateTitle(item.title, item.slug);
+      titlediv.appendChild(titleElement);
+
+      if (loadSavedLectures().includes(item.title)) {
+        const checkdiv = document.createElement('div');
+        checkdiv.appendChild(document.createTextNode('\u2713'));
+        checkdiv.classList.add('check');
+        textdiv.appendChild(checkdiv);
+      }
+    }
   }
   // Viljum skipta þessu upp, eitt fall fyrir mynd, eitt fyrir myndband, o.s.frv.
 

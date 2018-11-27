@@ -113,6 +113,7 @@ button {
     display: flex;
     flex-direction: row;
     position: relative;
+    font-size: 14px;
     @include columns(12);
     //position:absolute;
     @media (min-width: 500px) {
@@ -131,4 +132,9 @@ a {
 }
 .thumbnail {
     padding-left: 0px;
+}
+.greydiv {
+    background-color: $color-grar1;
+    padding-top: 68%;
+    padding-bottom: $gutter/2;
 }
