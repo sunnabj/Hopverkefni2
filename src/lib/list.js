@@ -65,32 +65,13 @@ export default class List {
     if (item.slug === 'html-element' || item.slug === 'js-basic' || item.slug === 'js-dom') {
       const greydiv = document.createElement('div');
       greydiv.classList.add('greydiv');
-
-      const categorydiv = document.createElement('div');
-      categorydiv.classList.add('category');
-
-      const categoryElement = generateCategory(item.category);
-      categorydiv.appendChild(categoryElement);
-      greydiv.appendChild(categorydiv);
-      const titlediv = document.createElement('div');
-      titlediv.classList.add('title');
-      const titleElement = generateTitle(item.title, item.slug);
-      titlediv.appendChild(titleElement);
-      greydiv.appendChild(titlediv);
-
       lecturediv.appendChild(greydiv);
-
-      if (loadSavedLectures().includes(item.title)) {
-        const checkdiv = document.createElement('div');
-        checkdiv.appendChild(document.createTextNode('\u2713'));
-        checkdiv.classList.add('check');
-        greydiv.appendChild(checkdiv);
-      }
     }
     else {
       const imageElement = generateImage(item.thumbnail);
       imageElement.classList.add('thumbnail');
       lecturediv.appendChild(imageElement);
+    }
 
       const textdiv = document.createElement('div');
       textdiv.classList.add('fyrirlestur__text');
