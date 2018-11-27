@@ -12,6 +12,5 @@
 
 ## Virkni ##
 
-* Láta HTML, CSS og Javascript takka velja rétt þegar ýtt er á marga saman í einu
 * Fyrirlestrar vistast nú í localstorage, og tjekkmerkið sést á þeim, en þarf að ná að sýna það á forsíðu
 
