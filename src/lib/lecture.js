@@ -69,12 +69,12 @@ export default class Lecture {
     const slugTitle = slugArray[1];
     const realTitle = this.findTitle(slugTitle);
     const title = generateHeading(realTitle, 'h1');
-    console.log('title er ', title.textContent);
     const category = generateHeading(slugCategory, 'h2');
-    const titlediv = document.querySelector('.header__title');
-    titlediv.appendChild(category);
+    const categorydiv = document.querySelector('.header__h2');
+    categorydiv.appendChild(category);
+    const titlediv = document.querySelector('.header__h1');
     titlediv.appendChild(title);
-    title.classList.add('lecture__title');
+
     const savedArray = loadSavedLectures();
     if (savedArray.includes(document.querySelector('.header__title').textContent)) {
       const finishLecture = document.querySelector('.footer__finish');
