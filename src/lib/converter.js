@@ -6,11 +6,14 @@ import { createElement } from './helpers';
 
 export function generateImage(imagePath) {
   if (!imagePath) {
-    return document.createElement('div');
+    const greydiv = document.createElement('div');
+    greydiv.classList.add('greydiv');
+    return greydiv;
     // Má nota css til að teikna grátt og jafn stórt
   }
   const imageElement = createElement('img');
   imageElement.src = `../../${imagePath}`;
+  imageElement.classList.add('thumbnail');
   return imageElement;
 }
 

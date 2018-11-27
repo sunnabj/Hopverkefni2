@@ -69,14 +69,16 @@ export default class Lecture {
     const slugTitle = slugArray[1];
     const realTitle = this.findTitle(slugTitle);
     const title = generateHeading(realTitle, 'h1');
+    title.classList.add('header__h1');
     const category = generateHeading(slugCategory, 'h2');
-    const categorydiv = document.querySelector('.header__h2');
-    categorydiv.appendChild(category);
-    const titlediv = document.querySelector('.header__h1');
+    category.classList.add('header__h2');
+
+    const titlediv = document.querySelector('.header__title');
+    titlediv.appendChild(category);
     titlediv.appendChild(title);
 
     const savedArray = loadSavedLectures();
-    if (savedArray.includes(document.querySelector('.header__title').textContent)) {
+    if (savedArray.includes(document.querySelector('.header__h1').textContent)) {
       const finishLecture = document.querySelector('.footer__finish');
       finishLecture.classList.add('footer__finish--hidden')
       const finishedLecture = document.querySelector('.footer__finished');
@@ -162,7 +164,7 @@ export default class Lecture {
     finishedLecture.classList.add('footer__finished--hidden');
     const unfinishedLecture = document.querySelector('.footer__finish');
     unfinishedLecture.classList.remove('footer__finish--hidden');
-    removeLectures(document.querySelector('.lecture__title').textContent);
+    removeLectures(document.querySelector('.header__h1').textContent);
   }
 
   finishLecture(e) {
@@ -170,12 +172,12 @@ export default class Lecture {
     finishLecture.classList.add('footer__finish--hidden')
     const finishedLecture = document.querySelector('.footer__finished');
     finishedLecture.classList.remove('footer__finished--hidden');
-    console.log('header content ', document.querySelector('.lecture__title').textContent);
-    saveLectures(document.querySelector('.lecture__title').textContent);
+    saveLectures(document.querySelector('.header__h1').textContent);
   }
 
   load() {
     const qs = new URLSearchParams(window.location.search);
+    console.log(qs);
     const slug = qs.get('slug');
 
     loadSavedLectures();
