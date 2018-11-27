@@ -21,9 +21,13 @@ html { /* stylelint-disable-line */
   font-family: $font-main;
   font-size: 16px;
 }
-
+main {
+  max-width: 1200px;
+  @include columns(12);
+  margin: 0 auto;
+}
 img { /* stylelint-disable-line */
-  max-width: 100%;
+  @include columns(12);
 }
 
 header {
@@ -39,13 +43,23 @@ header {
 }
 .header__title {
    position: absolute;
-   bottom: 45%;
-   right: 45%;
+   bottom: 35%;
+   right: 32%;
+   &:nth-child(2) {
+     font-size: 32px;
+   }
+   @media(min-width: 750px){
+     bottom: 50%;
+     right: 50%;
+   }
 }
 .heading {
    font-family: $font-heading;
    font-size: 24;
    padding-top: $gutter;
    padding-bottom: $gutter/2;
-   margin-left: $gutter;
+   margin-left: $gutter/2;
+}
+h2 {
+  text-transform: uppercase;
 }
