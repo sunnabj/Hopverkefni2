@@ -33,14 +33,15 @@ button {
     // height: 100%;
     // margin-right: ($gutter / 4);
     // margin-left: $gutter / 4;
-    background-color: $color-grar2;
-    border: $color-grar2;
+    background-color: $color-grar1;
+    border: $color-grar1;
     border-radius: 10px;
     transition: background-color $transition;
     padding: $gutter/2;
     font-family: $font-heading;
     font-weight: bold;
     margin-bottom: $gutter;
+    font-size: 24px;
 
     &:hover {
         background-color: $color-grar3;
@@ -55,3 +56,28 @@ button {
         border-color: $color-graenn2;
     }
 }
+
+.fyrirlestur__titlecat {
+    background-color: $color-grar1;
+    margin-bottom: 2*$gutter;
+    padding-top: 0.5*$gutter;
+    padding-bottom: 0.5*$gutter;
+    padding-left: 0.5*$gutter;
+    max-width: 443px;
+    //position:absolute;
+    @media (min-width: 500px) {
+        @include columns(12);
+        flex-wrap: wrap;
+    }
+}
+.category {
+    font-family: $font-heading;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+a {
+    color: $color-svartur;
+    text-decoration: none;
+    font-family: $font-heading;
+}
+
