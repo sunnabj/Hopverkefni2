@@ -1,7 +1,7 @@
 import { empty, createElement } from './helpers';
 import { generateImage, generateTitle, generateCategory } from './converter';
 import Lecture from './lecture'; // Hvað er málið?
-import { clear, saveTypes, removeTypes, loadSavedTypes } from './storage';
+import { clear, saveTypes, removeTypes, loadSavedTypes, loadSavedLectures } from './storage';
 
 export default class List {
   constructor() {
@@ -56,6 +56,7 @@ export default class List {
   }
 
   renderItem(item) {
+    console.log('item í renderItem ', item);
     const lecturediv = document.createElement('div');
     lecturediv.classList.add('fyrirlestur');
     this.container.appendChild(lecturediv);
@@ -64,21 +65,32 @@ export default class List {
     imageElement.classList.add('thumbnail');
     lecturediv.appendChild(imageElement);
 
-    const greytitlediv = document.createElement('div');
-    greytitlediv.classList.add('fyrirlestur__titlecat');
-    lecturediv.appendChild(greytitlediv);
+    const textdiv = document.createElement('div');
+    textdiv.classList.add('fyrirlestur__text');
+    lecturediv.appendChild(textdiv);
+
+    const titlecatdiv = document.createElement('div');
+    titlecatdiv.classList.add('fyrirlestur__titlecat');
+    textdiv.appendChild(titlecatdiv);
 
     const categorydiv = document.createElement('div');
     categorydiv.classList.add('category');
-    greytitlediv.appendChild(categorydiv);
+    titlecatdiv.appendChild(categorydiv);
     const categoryElement = generateCategory(item.category);
     categorydiv.appendChild(categoryElement);
 
     const titlediv = document.createElement('div');
     titlediv.classList.add('title');
-    greytitlediv.appendChild(titlediv);
+    titlecatdiv.appendChild(titlediv);
     const titleElement = generateTitle(item.title, item.slug);
     titlediv.appendChild(titleElement);
+
+    if (loadSavedLectures().includes(item.title)) {
+      const checkdiv = document.createElement('div');
+      checkdiv.appendChild(document.createTextNode('\u2713'));
+      checkdiv.classList.add('check');
+      textdiv.appendChild(checkdiv);
+    }
 
   }
   // Viljum skipta þessu upp, eitt fall fyrir mynd, eitt fyrir myndband, o.s.frv.

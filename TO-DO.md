@@ -5,10 +5,9 @@
 
 * Halda áfram að græja CSS fyrir forsíðu
 * Bæta útlit á fyrirlestrasíðum
-    * Miðja allt
-    * Láta youtube ná yfir alla síðuna
     * Fá rétta stærð og glæru á header mynd
-    * Fá klára fyrirlestur og til baka í 'column' uppsetningu
+    * break line - fá efnisgreinar
+    * laga skrift í quote
 
 ## Virkni ##
 
