@@ -85,16 +85,9 @@ export default class List {
     const titleElement = generateTitle(item.title, item.slug);
     titlediv.appendChild(titleElement);
 
-    let localstoragestring = item.category + item.title;
-    if (item.category === 'javascript') {
-      localstoragestring = 'js' + item.title;
-    }
-    console.log('localstoragestring ', localstoragestring);
-    console.log('saved lectures ', loadSavedLectures());
-    if (loadSavedLectures().includes('jsDæmi')) {
-      console.log('Já, hann er þarna');
+    if (loadSavedLectures().includes(item.title)) {
       const checkdiv = document.createElement('div');
-      checkdiv.appendChild(document.createTextNode('&#10004;'));
+      checkdiv.appendChild(document.createTextNode('\u2713'));
       checkdiv.classList.add('check');
       textdiv.appendChild(checkdiv);
     }
