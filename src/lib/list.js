@@ -1,6 +1,5 @@
 import { empty, createElement } from './helpers';
 import { generateImage, generateTitle, generateCategory } from './converter';
-import Lecture from './lecture'; // Hvað er málið?
 import { clear, saveTypes, removeTypes, loadSavedTypes, loadSavedLectures } from './storage';
 
 export default class List {
@@ -66,12 +65,13 @@ export default class List {
     if (item.slug === 'html-element' || item.slug === 'js-basic' || item.slug === 'js-dom') {
       const greydiv = document.createElement('div');
       greydiv.classList.add('greydiv');
+
       const categorydiv = document.createElement('div');
       categorydiv.classList.add('category');
+
       const categoryElement = generateCategory(item.category);
       categorydiv.appendChild(categoryElement);
       greydiv.appendChild(categorydiv);
-
       const titlediv = document.createElement('div');
       titlediv.classList.add('title');
       const titleElement = generateTitle(item.title, item.slug);
@@ -119,8 +119,6 @@ export default class List {
         textdiv.appendChild(checkdiv);
       }
     }
-    
-
   }
   // Viljum skipta þessu upp, eitt fall fyrir mynd, eitt fyrir myndband, o.s.frv.
 
