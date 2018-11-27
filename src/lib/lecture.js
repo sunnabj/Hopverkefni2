@@ -130,7 +130,7 @@ export default class Lecture {
       this.container.appendChild(quoteElement);
     }
     else if (item.type === 'heading') {
-      const headingElement = generateHeading(item.data, 'h1');
+      const headingElement = generateHeading(item.data, 'h2');
       headingElement.classList.add('heading');
       this.container.appendChild(headingElement);
     }
