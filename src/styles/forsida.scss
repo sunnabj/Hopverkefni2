@@ -48,14 +48,18 @@ button {
         border-color: $color-grar3;
     }
 }
-.flokkar__htmlGreen {
-    background-color: $color-graenn1;
-    border-color: $color-graenn1;
+button:focus {
+    background: pink;
+}
+button.flokkar__htmlGreen:focus {
+        background-color: $color-graenn1;
+        border-color: $color-graenn1;
     &:hover {
-        background-color: $color-graenn2;
+        //background-color: $color-graenn2;
         border-color: $color-graenn2;
     }
 }
+
 .fyrirlestur__titlecat {
     display: flex;
     flex-direction: column;
