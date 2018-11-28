@@ -150,9 +150,17 @@ a { /* stylelint-disable-line */
 
 .fyrirlestur:nth-of-type(8) {
   .fyrirlestur__text {
-    //padding-top: 0;
     @media (max-width: 1036px) {
       padding-top: 0;
+    }
+    @media (max-width: 900px) {
+      padding-top: $gutter;
+    }
+    @media (max-width: 707px) {
+      padding-top: 0;
+    }
+    @media (max-width: 606px) {
+      padding-top: $gutter;
     }
   }
 }
