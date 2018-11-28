@@ -8,6 +8,10 @@ export default class List {
     this.url = '../lectures.json';
   }
 
+  /**
+   * Nær í json fyrirlestragögn. Skilar villu ef gögnin ekki í lagi.
+   */
+
   loadLectures() {
     return fetch(this.url)
       .then((res) => {
@@ -17,6 +21,9 @@ export default class List {
         return res.json();
       });
   }
+  /**
+   * Fer í gegnum gögnin en birtir bara fyrirlestra með flokk html
+   */
 
   renderDataHTML(data) {
     data.lectures.map((item) => {
@@ -25,6 +32,9 @@ export default class List {
       }
     });
   }
+  /**
+   * Fer í gegnum gögnin en birtir bara fyrirlestra með flokk css
+   */
 
   renderDataCSS(data) {
     data.lectures.map((item) => {
@@ -33,6 +43,9 @@ export default class List {
       }
     });
   }
+  /**
+   * Fer í gegnum gögnin en birtir bara fyrirlestra með flokk javascript 
+   */
 
   renderDataJS(data) {
     data.lectures.map((item) => {
@@ -43,33 +56,41 @@ export default class List {
   }
 
   /**
-   * Sér um að setja allt inn í html-ið
-   * @param {*} data 
-   */
+  * Fer í gegnum öll fyrirlestrargögnin og birtir þau 
+  */ 
+
   renderData(data) {
-    console.log(data.lectures); // Þurfum að fara í gegnum hvern einasta hlut og sækja thumbnail
+    console.log(data.lectures);
     
     data.lectures.map((item) => {
       this.renderItem(item);
     });
   }
+  /**
+   * Býr til div og klasanöfn fyrir hverja gerð af hlutum sem birtast á forsíðunni.
+   */
 
   renderItem(item) {
+    // Þetta div heldur utan um öll gögnin
     const lecturediv = document.createElement('div');
     lecturediv.classList.add('fyrirlestur');
     this.container.appendChild(lecturediv);
 
+    // Hér er thumbnail fyrir fyrirlestur, eða grár kassi ef engin er myndin
     const imageElement = generateImage(item.thumbnail);
     lecturediv.appendChild(imageElement);
 
+    // Textadiv heldur utan um annað en mynd
     const textdiv = document.createElement('div');
     textdiv.classList.add('fyrirlestur__text');
     lecturediv.appendChild(textdiv);
 
+    // Sér div heldur utan um titil og flokk
     const titlecatdiv = document.createElement('div');
     titlecatdiv.classList.add('fyrirlestur__titlecat');
     textdiv.appendChild(titlecatdiv);
 
+    // Hér koma div fyrir titil og flokk
     const categorydiv = document.createElement('div');
     categorydiv.classList.add('category');
     titlecatdiv.appendChild(categorydiv);
@@ -82,6 +103,7 @@ export default class List {
     const titleElement = generateTitle(item.title, item.slug);
     titlediv.appendChild(titleElement);
 
+    // Ef fyrirlestur hefur verið kláraður kemur tjekkmerki
     if (loadSavedLectures().includes(item.title)) {
       const checkdiv = document.createElement('div');
       checkdiv.appendChild(document.createTextNode('\u2713'));
@@ -89,7 +111,12 @@ export default class List {
       textdiv.appendChild(checkdiv);
     }
   }
-  // Viljum skipta þessu upp, eitt fall fyrir mynd, eitt fyrir myndband, o.s.frv.
+  /**
+ * Event handler ef hætt er að velja HTML síuna efst.
+ * Búinn er til nýr listi sem hleður inn CSS gögnum og/eða Javascript
+ * gögnum ef þau eru valin, en ef ekkert er valið er öllu hlaðið inn.
+ * Birtir svo eðlilega HTML takkann og fjarlægir þann græna.
+ */
 
   removeHTML(e) {
     removeTypes('HTML');
@@ -114,6 +141,12 @@ export default class List {
     const htmlbutton = document.querySelector('.flokkar__html');
     htmlbutton.classList.remove('flokkar__html--hidden');
   }
+  /**
+   * Event handler ef HTML sían er valin efst.
+   * Búinn er til nýr listi sem hleður inn HTML gögnum og einnig
+   * CSS og/eða javascript gögnum ef þau eru valin.
+   * Birtir svo grænan HTML takka og fjarlægir þann eðlilega.
+   */
 
   showHTML(e) {
     saveTypes('HTML');
@@ -136,6 +169,12 @@ export default class List {
     const htmlbuttonNew = document.querySelector('.flokkar__htmlGreen');
     htmlbuttonNew.classList.remove('flokkar__htmlGreen--hidden');
   }
+  /**
+ * Event handler ef hætt er að velja CSS síuna efst.
+ * Búinn er til nýr listi sem hleður inn HTML gögnum og/eða Javascript
+ * gögnum ef þau eru valin, en ef ekkert er valið er öllu hlaðið inn.
+ * Birtir svo eðlilega CSS takkann og fjarlægir þann græna.
+ */
 
   removeCSS(e) {
     removeTypes('CSS');
@@ -160,6 +199,12 @@ export default class List {
     const cssbutton = document.querySelector('.flokkar__css');
     cssbutton.classList.remove('flokkar__css--hidden');
   }
+  /**
+   * Event handler ef CSS sían er valin efst.
+   * Búinn er til nýr listi sem hleður inn CSS gögnum og einnig
+   * HTML og/eða javascript gögnum ef þau eru valin.
+   * Birtir svo grænan CSS takka og fjarlægir þann eðlilega.
+   */
 
   showCSS(e) {
     saveTypes('CSS');
@@ -184,6 +229,12 @@ export default class List {
     const cssbuttonNew = document.querySelector('.flokkar__cssGreen');
     cssbuttonNew.classList.remove('flokkar__cssGreen--hidden');
   }
+  /**
+ * Event handler ef hætt er að velja Javascript síuna efst.
+ * Búinn er til nýr listi sem hleður inn HTML gögnum og/eða CSS
+ * gögnum ef þau eru valin, en ef ekkert er valið er öllu hlaðið inn.
+ * Birtir svo eðlilega Javascript takkann og fjarlægir þann græna.
+ */
 
   removeJS(e) {
     removeTypes('Javascript');
@@ -208,6 +259,13 @@ export default class List {
     const jsbutton = document.querySelector('.flokkar__javascript');
     jsbutton.classList.remove('flokkar__javascript--hidden');
   }
+
+  /**
+   * Event handler ef Javascript sían er valin efst.
+   * Búinn er til nýr listi sem hleður inn Javascript gögnum og einnig
+   * HTML og/eða CSS gögnum ef þau eru valin.
+   * Birtir svo grænan Javascript takka og fjarlægir þann eðlilega.
+   */
 
   showJavascript(e) {
     saveTypes('Javascript');
@@ -234,6 +292,13 @@ export default class List {
   clearLocalStorage() {
     clear();
   }
+  /**
+   * Á þetta er kallað þegar forsíðan er keyrð, í gegnum index.js.
+   * Hleður inn fyrirlestrargögnin og þegar það er komið
+   * er farið í gegnum þau og fyrirlestraryfirlitið smíðað
+   * Býr einnig til event handlera fyrir takkana uppi sem sjá um 
+   * að sía eftir fyrirlestrargerð.
+   */
 
   load() {
     empty(this.container);
@@ -255,7 +320,7 @@ export default class List {
     const JSbuttonGreen = document.querySelector('.flokkar__javascriptGreen');
     JSbuttonGreen.addEventListener('click', this.removeJS);
 
-    const clearLocalst = document.querySelector('.clearLocal');
-    clearLocalst.addEventListener('click', this.clearLocalStorage);
+    const clearLocalst = document.querySelector('.clearLocal'); // Muna að fjarlægja!
+    clearLocalst.addEventListener('click', this.clearLocalStorage); // Muna að fjarlægja!
   }
 }

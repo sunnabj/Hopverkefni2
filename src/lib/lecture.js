@@ -97,6 +97,12 @@ export default class Lecture {
         if (!found) {
           throw new Error('Fyrirlestur fannst ekki');
         }
+        const headerImage = document.querySelector('.header__image');
+        const headerimageElement = createElement('img');
+        headerimageElement.src = found.image;
+        headerimageElement.classList.add('fyrirlestur__headerimg');
+        headerImage.appendChild(headerimageElement);
+
         return found;
       });
   }
