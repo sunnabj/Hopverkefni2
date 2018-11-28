@@ -57,9 +57,11 @@ export function generateText(text) {
 export function generateQuote(quote) {
   const quoteElement = document.createElement('blockquote');
   quoteElement.classList.add('quote');
-  const quoteText = generateText(quote.data);
+  const quoteText = document.createElement('p');
+  quoteText.appendChild(document.createTextNode(quote.data));
   quoteText.classList.add('quote__data');
-  const quoteAttribute = generateText(quote.attribute);
+  const quoteAttribute = document.createElement('p');
+  quoteAttribute.appendChild(document.createTextNode(quote.attribute));
   quoteAttribute.classList.add('quote__attribute');
   quoteElement.appendChild(quoteText);
   quoteElement.appendChild(quoteAttribute);
