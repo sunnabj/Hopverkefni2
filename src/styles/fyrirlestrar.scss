@@ -30,9 +30,7 @@
 }
 
 .text {
-  margin-right: $gutter/2;
   margin-bottom: 2*$gutter;
-  margin-left: $gutter/2;
   font-family: $font-main;
   @include columns(12);
   white-space: pre-line;
@@ -40,15 +38,19 @@
 
 .quote {
   padding-top: $gutter;
-  padding-bottom: $gutter/2;
+  padding-bottom: $gutter;
   padding-left: $gutter/2;
   margin-bottom: 2*$gutter;
   font-family: $font-main;
   background-color: $color-grar1;
-}
 
-.quote__attribute {
-  font-style: italic;
+  &__attribute {
+    font-style: italic;
+  }
+
+  &__data {
+    padding-bottom: $gutter;
+  }
 }
 
 .image__caption {
