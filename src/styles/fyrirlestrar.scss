@@ -2,6 +2,11 @@
 
 .lecture {
   @include columns(12);
+  @media (min-width: 800px) {
+    @include columns(8);
+    margin-right: auto;
+    margin-left: auto;
+  }
 }
 
 .youtube {
