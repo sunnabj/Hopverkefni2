@@ -3,30 +3,60 @@
 .flokkar {
   display: flex;
   justify-content: space-evenly;
-}
 
-.flokkar__html--hidden {
-  display: none;
-}
+  &__html--hidden {
+    display: none;
+  }
 
-.flokkar__htmlGreen--hidden {
-  display: none;
-}
+  &__htmlGreen {
+    background-color: $color-graenn1;
+    border-color: $color-graenn1;
 
-.flokkar__css--hidden {
-  display: none;
-}
+    &:hover {
+      background-color: $color-graenn2;
+      border-color: $color-graenn2;
+    }
+  }
 
-.flokkar__cssGreen--hidden {
-  display: none;
-}
+  &__htmlGreen--hidden {
+    display: none;
+  }
 
-.flokkar__javascript--hidden {
-  display: none;
-}
+  &__css--hidden {
+    display: none;
+  }
 
-.flokkar__javascriptGreen--hidden {
-  display: none;
+  &__cssGreen {
+    background-color: $color-graenn1;
+    border-color: $color-graenn1;
+
+    &:hover {
+      background-color: $color-graenn2;
+      border-color: $color-graenn2;
+    }
+  }
+
+  &__cssGreen--hidden {
+    display: none;
+  }
+
+  &__javascript--hidden {
+    display: none;
+  }
+
+  &__javascriptGreen {
+    background-color: $color-graenn1;
+    border-color: $color-graenn1;
+
+    &:hover {
+      background-color: $color-graenn2;
+      border-color: $color-graenn2;
+    }
+  }
+
+  &__javascriptGreen--hidden {
+    display: none;
+  }
 }
 
 button {
@@ -46,41 +76,6 @@ button {
   }
 }
 
-.flokkar__htmlGreen {
-  background-color: $color-graenn1;
-  border-color: $color-graenn1;
-
-  &:hover {
-    background-color: $color-graenn2;
-    border-color: $color-graenn2;
-  }
-}
-
-.flokkar__cssGreen {
-  background-color: $color-graenn1;
-  border-color: $color-graenn1;
-
-  &:hover {
-    background-color: $color-graenn2;
-    border-color: $color-graenn2;
-  }
-}
-
-.flokkar__javascriptGreen {
-  background-color: $color-graenn1;
-  border-color: $color-graenn1;
-
-  &:hover {
-    background-color: $color-graenn2;
-    border-color: $color-graenn2;
-  }
-}
-
-.fyrirlestur__titlecat {
-  display: flex;
-  flex-direction: column;
-}
-
 .fyrirlestur {
   @media (min-width: 500px) {
     @include columns(6);
@@ -89,9 +84,27 @@ button {
     margin-left: -5px;
     flex-direction: column;
   }
-
   @media (min-width: 900px) {
     @include columns(4);
+  }
+
+  &__text {
+    position: relative;
+    display: flex;
+    padding-top: $gutter;
+    padding-bottom: 0.5*$gutter;
+    padding-left: 0.5*$gutter;
+    margin-bottom: 2*$gutter;
+    font-size: 14px;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: $color-grar1;
+    @include columns(12);
+  }
+
+  &__titlecat {
+    display: flex;
+    flex-direction: column;
   }
 }
 
@@ -107,20 +120,6 @@ button {
   font-size: 32px;
   font-weight: bold;
   color: $color-graenn1;
-}
-
-.fyrirlestur__text {
-  position: relative;
-  display: flex;
-  padding-top: $gutter;
-  padding-bottom: 0.5*$gutter;
-  padding-left: 0.5*$gutter;
-  margin-bottom: 2*$gutter;
-  font-size: 14px;
-  flex-direction: row;
-  justify-content: space-between;
-  background-color: $color-grar1;
-  @include columns(12);
 }
 
 .category {

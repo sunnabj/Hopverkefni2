@@ -45,7 +45,7 @@ export function generateText(text) {
   return createElement('p', text);
 }
 /**
- * Býr til element fyrir quotes. Hver þeirra hefur texta og attribute. 
+ * Býr til element fyrir quotes. Hver þeirra hefur texta og attribute.
  */
 export function generateQuote(quote) {
   const quoteElement = document.createElement('blockquote');
@@ -83,7 +83,7 @@ export function generateList(listitem) {
   return createElement('li', listitem);
 }
 /**
- * Býr til element fyrir youtube myndbönd. 
+ * Býr til element fyrir youtube myndbönd.
  */
 export function generateYoutube(youtube) {
   const videoElement = document.createElement('iframe');

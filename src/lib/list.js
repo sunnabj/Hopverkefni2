@@ -2,7 +2,9 @@
 
 import { empty } from './helpers';
 import { generateImage, generateTitle, generateCategory } from './converter';
-import { saveTypes, removeTypes, loadSavedTypes, loadSavedLectures } from './storage';
+import {
+  saveTypes, removeTypes, loadSavedTypes, loadSavedLectures,
+} from './storage';
 
 export default class List {
   constructor() {
@@ -31,10 +33,11 @@ export default class List {
   renderData(data) {
     data.lectures.map((item) => {
       this.renderItem(item);
+      return true;
     });
   }
 
-/**
+  /**
  * Fer í gegnum öll gögnin, en birtir bara fyrirlestra að ákveðinni gerð,
  * þ.e. css, html eða javascript, sem kemur inn sem argumentið type.
  */
@@ -43,6 +46,7 @@ export default class List {
       if (item.category === type) {
         this.renderItem(item);
       }
+      return true;
     });
   }
 
@@ -99,20 +103,20 @@ export default class List {
    * Birtir svo grænan HTML takka og fjarlægir þann eðlilega.
    */
 
-  showHTML(e) {
+  showHTML() {
     saveTypes('HTML');
     const list = new List();
     empty(list.container);
     list.loadLectures()
-      .then((data) => list.renderDataSpecial(data, 'html'));
+      .then(data => list.renderDataSpecial(data, 'html'));
 
     if (loadSavedTypes().includes('CSS')) {
       list.loadLectures()
-        .then((data) => list.renderDataSpecial(data, 'css'));
+        .then(data => list.renderDataSpecial(data, 'css'));
     }
     if (loadSavedTypes().includes('Javascript')) {
       list.loadLectures()
-        .then((data) => list.renderDataSpecial(data, 'javascript'));
+        .then(data => list.renderDataSpecial(data, 'javascript'));
     }
 
     const htmlbutton = document.querySelector('.flokkar__html');
@@ -128,21 +132,22 @@ export default class List {
  * Birtir svo eðlilega HTML takkann og fjarlægir þann græna.
  */
 
-  removeHTML(e) {
+  removeHTML() {
     removeTypes('HTML');
     const list = new List();
     empty(list.container);
 
     if (loadSavedTypes().includes('CSS')) {
       list.loadLectures()
-        .then((data) => list.renderDataSpecial(data, 'css'));
+        .then(data => list.renderDataSpecial(data, 'css'));
     }
     if (loadSavedTypes().includes('Javascript')) {
       list.loadLectures()
-        .then((data) => list.renderDataSpecial(data, 'javascript'));
-    } if (!(loadSavedTypes().includes('Javascript') || loadSavedTypes().includes('CSS'))) {
+        .then(data => list.renderDataSpecial(data, 'javascript'));
+    }
+    if (!(loadSavedTypes().includes('Javascript') || loadSavedTypes().includes('CSS'))) {
       list.loadLectures()
-        .then((data) => list.renderData(data));
+        .then(data => list.renderData(data));
     }
 
     const htmlbuttonNew = document.querySelector('.flokkar__htmlGreen');
@@ -157,22 +162,22 @@ export default class List {
    * Birtir svo grænan CSS takka og fjarlægir þann eðlilega.
    */
 
-  showCSS(e) {
+  showCSS() {
     saveTypes('CSS');
     const list = new List();
     empty(list.container);
 
     if (loadSavedTypes().includes('HTML')) {
       list.loadLectures()
-        .then((data) => list.renderDataSpecial(data, 'html'));
+        .then(data => list.renderDataSpecial(data, 'html'));
     }
 
     list.loadLectures()
-      .then((data) => list.renderDataSpecial(data, 'css'));
+      .then(data => list.renderDataSpecial(data, 'css'));
 
     if (loadSavedTypes().includes('Javascript')) {
       list.loadLectures()
-        .then((data) => list.renderDataSpecial(data, 'javascript'));
+        .then(data => list.renderDataSpecial(data, 'javascript'));
     }
 
     const cssbutton = document.querySelector('.flokkar__css');
@@ -187,21 +192,22 @@ export default class List {
  * Birtir svo eðlilega CSS takkann og fjarlægir þann græna.
  */
 
-  removeCSS(e) {
+  removeCSS() {
     removeTypes('CSS');
     const list = new List();
     empty(list.container);
 
     if (loadSavedTypes().includes('HTML')) {
       list.loadLectures()
-        .then((data) => list.renderDataSpecial(data, 'html'));
+        .then(data => list.renderDataSpecial(data, 'html'));
     }
     if (loadSavedTypes().includes('Javascript')) {
       list.loadLectures()
-        .then((data) => list.renderDataSpecial(data, 'javascript'));
-    } if (!(loadSavedTypes().includes('HTML') || loadSavedTypes().includes('HTML'))) {
+        .then(data => list.renderDataSpecial(data, 'javascript'));
+    }
+    if (!(loadSavedTypes().includes('HTML') || loadSavedTypes().includes('Javascript'))) {
       list.loadLectures()
-        .then((data) => list.renderData(data));
+        .then(data => list.renderData(data));
     }
 
     const cssbuttonNew = document.querySelector('.flokkar__cssGreen');
@@ -216,21 +222,23 @@ export default class List {
    * Birtir svo grænan Javascript takka og fjarlægir þann eðlilega.
    */
 
-  showJavascript(e) {
+  showJavascript() {
     saveTypes('Javascript');
     const list = new List();
     empty(list.container);
 
     if (loadSavedTypes().includes('HTML')) {
       list.loadLectures()
-        .then((data) => list.renderDataSpecial(data, 'html'));
+        .then(data => list.renderDataSpecial(data, 'html'));
     }
+
     if (loadSavedTypes().includes('CSS')) {
       list.loadLectures()
-        .then((data) => list.renderDataSpecial(data, 'css'));
+        .then(data => list.renderDataSpecial(data, 'css'));
     }
+
     list.loadLectures()
-      .then((data) => list.renderDataSpecial(data, 'javascript'));
+      .then(data => list.renderDataSpecial(data, 'javascript'));
 
     const jsbutton = document.querySelector('.flokkar__javascript');
     jsbutton.classList.add('flokkar__javascript--hidden');
@@ -244,21 +252,22 @@ export default class List {
  * Birtir svo eðlilega Javascript takkann og fjarlægir þann græna.
  */
 
-  removeJS(e) {
+  removeJS() {
     removeTypes('Javascript');
     const list = new List();
     empty(list.container);
 
     if (loadSavedTypes().includes('HTML')) {
       list.loadLectures()
-        .then((data) => list.renderDataSpecial(data, 'html'));
+        .then(data => list.renderDataSpecial(data, 'html'));
     }
     if (loadSavedTypes().includes('CSS')) {
       list.loadLectures()
-        .then((data) => list.renderDataSpecial(data, 'css'));
-    } if (!(loadSavedTypes().includes('HTML') || loadSavedTypes().includes('CSS'))) {
+        .then(data => list.renderDataSpecial(data, 'css'));
+    }
+    if (!(loadSavedTypes().includes('HTML') || loadSavedTypes().includes('CSS'))) {
       list.loadLectures()
-        .then((data) => list.renderData(data));
+        .then(data => list.renderData(data));
     }
 
     const jsbuttonNew = document.querySelector('.flokkar__javascriptGreen');
@@ -271,14 +280,14 @@ export default class List {
    * Á þetta er kallað þegar forsíðan er keyrð, í gegnum index.js.
    * Hleður inn fyrirlestrargögnin og þegar það er komið
    * er farið í gegnum þau og fyrirlestraryfirlitið smíðað
-   * Býr einnig til event handlera fyrir takkana uppi sem sjá um 
+   * Býr einnig til event handlera fyrir takkana uppi sem sjá um
    * að sía eftir fyrirlestrargerð.
    */
 
   load() {
     empty(this.container);
     this.loadLectures()
-      .then((data) => this.renderData(data));
+      .then(data => this.renderData(data));
 
     const HTMLbutton = document.querySelector('.flokkar__html');
     HTMLbutton.addEventListener('click', this.showHTML);

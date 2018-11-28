@@ -1,6 +1,9 @@
 /* eslint linebreak-style: ["error", "windows"] */
 
-import { generateImage, generateText, generateQuote, generateHeading, generateList, generateCode, generateYoutube } from './converter';
+import {
+  generateImage, generateText, generateQuote, generateHeading,
+  generateList, generateCode, generateYoutube,
+} from './converter';
 import { saveLectures, loadSavedLectures, removeLectures } from './storage';
 import { createElement } from './helpers';
 
@@ -61,10 +64,9 @@ export default class Lecture {
     return title;
   }
 
-/**
+  /**
  * Hleður inn gögnum fyrir hvern fyrirlestur.
  * slug = Kóði fyrir slóðina á tiltekinn fyrirlestur.
- * 
  */
 
   loadLecture(slug) {
@@ -87,13 +89,13 @@ export default class Lecture {
     const savedArray = loadSavedLectures();
     if (savedArray.includes(document.querySelector('.header__h1').textContent)) {
       const finishLecture = document.querySelector('.footer__finish');
-      finishLecture.classList.add('footer__finish--hidden')
+      finishLecture.classList.add('footer__finish--hidden');
       const finishedLecture = document.querySelector('.footer__finished');
       finishedLecture.classList.remove('footer__finished--hidden');
     }
 
     /**
-     * Nær í fyrirlestrana og ef það tekst þá er gögnum skilað fyrir 
+     * Nær í fyrirlestrana og ef það tekst þá er gögnum skilað fyrir
      * viðeigandi fyrirlestur, út frá slug.
      */
     return fetch(this.url)
@@ -126,8 +128,8 @@ export default class Lecture {
   renderData(data) {
     data.content.map((item) => {
       this.renderItem(item);
+      return true;
     });
-
   }
   /**
    * Fer í gegnum hvern item í fyrirlestrargagnafylkinu og meðhöndlar þá
@@ -143,23 +145,18 @@ export default class Lecture {
       imageText.appendChild(document.createTextNode(item.caption));
       this.container.appendChild(imageElement);
       this.container.appendChild(imageText);
-    }
-    else if (item.type === 'text') {
+    } else if (item.type === 'text') {
       const textElement = generateText(item.data);
       textElement.classList.add('text');
       this.container.appendChild(textElement);
-    }
-    else if (item.type === 'quote') {
+    } else if (item.type === 'quote') {
       const quoteElement = generateQuote(item);
       this.container.appendChild(quoteElement);
-    }
-    else if (item.type === 'heading') {
+    } else if (item.type === 'heading') {
       const headingElement = generateHeading(item.data, 'h2');
       headingElement.classList.add('heading');
       this.container.appendChild(headingElement);
-    }
-    // Búum til óraðaðan lista og bætum við sérhverju staki í honum sem li.
-    else if (item.type === 'list') {
+    } else if (item.type === 'list') { // Búum til óraðaðan lista og bætum við sérhverju staki í honum sem li.
       const listElement = document.createElement('ul');
       listElement.classList.add('list');
 
@@ -169,13 +166,11 @@ export default class Lecture {
         listElement.appendChild(listitem);
         this.container.appendChild(listElement);
       }
-    }
-    else if (item.type === 'code') {
+    } else if (item.type === 'code') {
       const codeElement = generateCode(item.data);
       codeElement.classList.add('code');
       this.container.appendChild(codeElement);
-    }
-    else if (item.type === 'youtube') {
+    } else if (item.type === 'youtube') {
       const videoElement = generateYoutube(item.data);
       videoElement.classList.add('youtube');
       this.container.appendChild(videoElement);
@@ -188,9 +183,9 @@ export default class Lecture {
    * Vistum svo fyrirlesturinn.
    */
 
-  finishLecture(e) {
+  finishLecture() {
     const finishLecture = document.querySelector('.footer__finish');
-    finishLecture.classList.add('footer__finish--hidden')
+    finishLecture.classList.add('footer__finish--hidden');
     const finishedLecture = document.querySelector('.footer__finished');
     finishedLecture.classList.remove('footer__finished--hidden');
     saveLectures(document.querySelector('.header__h1').textContent);
@@ -201,7 +196,7 @@ export default class Lecture {
    * Fjarlægjum fyrirlesturinn úr localStorage.
    */
 
-  unfinishLecture(e) {
+  unfinishLecture() {
     const finishedLecture = document.querySelector('.footer__finished');
     finishedLecture.classList.add('footer__finished--hidden');
     const unfinishedLecture = document.querySelector('.footer__finish');
@@ -220,7 +215,7 @@ export default class Lecture {
 
     loadSavedLectures();
 
-    this.loadLecture(slug).then((data) => this.renderData(data));
+    this.loadLecture(slug).then(data => this.renderData(data));
     const finishButton = document.querySelector('.footer__finish');
     finishButton.addEventListener('click', this.finishLecture);
     const finishedButton = document.querySelector('.footer__finished');
