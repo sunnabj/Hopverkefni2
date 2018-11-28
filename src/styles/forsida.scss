@@ -30,15 +30,15 @@
 }
 
 button {
+  padding: $gutter/2;
+  margin-bottom: $gutter;
+  font-family: $font-heading;
+  font-size: 24px;
+  font-weight: bold;
   background-color: $color-grar1;
   border: $color-grar1;
   border-radius: 10px;
   transition: background-color $transition;
-  padding: $gutter/2;
-  margin-bottom: $gutter;
-  font-family: $font-heading;
-  font-weight: bold;
-  font-size: 24px;
 
   &:hover {
     background-color: $color-grar3;
@@ -105,21 +105,21 @@ button {
 
 .check {
   font-size: 32px;
-  color: $color-graenn1;
   font-weight: bold;
+  color: $color-graenn1;
 }
 
 .fyrirlestur__text {
-  background-color: $color-grar1;
   position: relative;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding-left: 0.5*$gutter;
   padding-top: $gutter;
   padding-bottom: 0.5*$gutter;
+  padding-left: 0.5*$gutter;
   margin-bottom: 2*$gutter;
   font-size: 14px;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: $color-grar1;
   @include columns(12);
 }
 
@@ -130,8 +130,8 @@ button {
 }
 
 a {
-  color: $color-svartur;
   font-family: $font-heading;
+  color: $color-svartur;
   text-decoration: none;
 }
 

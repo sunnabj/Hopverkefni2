@@ -33,10 +33,10 @@ img { /* stylelint-disable-line */
 }
 
 header {
-  width: 100%;
-  font-family: $font-heading;
   position: relative;
+  width: 100%;
   margin-bottom: 2*$gutter;
+  font-family: $font-heading;
 }
 
 .header__h2 {
@@ -47,20 +47,22 @@ header {
 .header__h1 {
   font-size: 48px;
 }
-.protection{
-   position: absolute;
-   top: 0;
-   bottom: 0;
-   right: 0;
-   left: 0;
-   z-index: 1;
-   background-color: rgba(255, 255, 255, 0.4);
-   width: 100%;
+
+.protection {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.4);
 }
 
 .header__title {
   position: absolute;
   bottom: 35%;
+  z-index: 2;
   display: flex;
   width: 100%;
   flex-direction: column;
