@@ -22,14 +22,12 @@ export function generateImage(imagePath) {
 }
 /**
  * Býr til element fyrir titla á forsíðu. Þeir hafa linka sem samsvara
- * viðeigandi fyrirlestri.
+ * viðeigandi fyrirlestri, fengnir með slug.
  */
 export function generateTitle(title, slug) {
   const link = document.createElement('a');
   link.href = `/fyrirlestur.html?slug=${slug}`;
-  // slug = linkurinn sem við ætlum að hafa
-  const titleElement = document.createElement('h2');
-  titleElement.appendChild(document.createTextNode(title));
+  const titleElement = createElement('h2', title);
 
   link.appendChild(titleElement);
   return link;
@@ -38,18 +36,13 @@ export function generateTitle(title, slug) {
  * Býr til element fyrir category fyrirlesturs, þ.e. html, css eða javascript
  */
 export function generateCategory(category) {
-  const categoryElement = document.createElement('h3');
-  categoryElement.appendChild(document.createTextNode(category));
-  return categoryElement;
+  return createElement('h3', category);
 }
 /**
  * Býr til element fyrir texta.
  */
 export function generateText(text) {
-  const textElement = document.createElement('p');
-  textElement.appendChild(document.createTextNode(text));
-  textElement.classList.add('text');
-  return textElement;
+  return createElement('p', text);
 }
 /**
  * Býr til element fyrir quotes. Hver þeirra hefur texta og attribute. 
@@ -57,11 +50,10 @@ export function generateText(text) {
 export function generateQuote(quote) {
   const quoteElement = document.createElement('blockquote');
   quoteElement.classList.add('quote');
-  const quoteText = document.createElement('p');
-  quoteText.appendChild(document.createTextNode(quote.data));
+  const quoteText = generateText(quote.data);
   quoteText.classList.add('quote__data');
-  const quoteAttribute = document.createElement('p');
-  quoteAttribute.appendChild(document.createTextNode(quote.attribute));
+
+  const quoteAttribute = generateText(quote.attribute);
   quoteAttribute.classList.add('quote__attribute');
   quoteElement.appendChild(quoteText);
   quoteElement.appendChild(quoteAttribute);
@@ -72,9 +64,7 @@ export function generateQuote(quote) {
  * gerð af heading skal búa til (h1, h2, h3 o.s.frv.).
  */
 export function generateHeading(heading, size) {
-  const headingElement = document.createElement(size);
-  headingElement.appendChild(document.createTextNode(heading));
-  return headingElement;
+  return createElement(size, heading);
 }
 /**
  * Býr til element fyrir kóða. Utan um kóðann er pre element til að fá
@@ -82,8 +72,7 @@ export function generateHeading(heading, size) {
  */
 export function generateCode(code) {
   const preElement = document.createElement('pre');
-  const codeElement = document.createElement('code');
-  codeElement.appendChild(document.createTextNode(code));
+  const codeElement = createElement('code', code);
   preElement.appendChild(codeElement);
   return preElement;
 }
@@ -91,9 +80,7 @@ export function generateCode(code) {
  * Býr til element fyrir hvert stak í lista.
  */
 export function generateList(listitem) {
-  const listdata = document.createElement('li');
-  listdata.appendChild(document.createTextNode(listitem));
-  return listdata;
+  return createElement('li', listitem);
 }
 /**
  * Býr til element fyrir youtube myndbönd. 

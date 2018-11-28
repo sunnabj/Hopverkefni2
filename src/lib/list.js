@@ -2,7 +2,7 @@
 
 import { empty } from './helpers';
 import { generateImage, generateTitle, generateCategory } from './converter';
-import { clear, saveTypes, removeTypes, loadSavedTypes, loadSavedLectures } from './storage';
+import { saveTypes, removeTypes, loadSavedTypes, loadSavedLectures } from './storage';
 
 export default class List {
   constructor() {
@@ -34,35 +34,13 @@ export default class List {
     });
   }
 
-  /**
-   * Fer í gegnum gögnin en birtir bara HTML fyrirlestra.
-   */
-
-  renderDataHTML(data) {
+/**
+ * Fer í gegnum öll gögnin, en birtir bara fyrirlestra að ákveðinni gerð,
+ * þ.e. css, html eða javascript, sem kemur inn sem argumentið type.
+ */
+  renderDataSpecial(data, type) {
     data.lectures.map((item) => {
-      if (item.category === 'html') {
-        this.renderItem(item);
-      }
-    });
-  }
-  /**
-   * Fer í gegnum gögnin en birtir bara CSS fyrirlestra.
-   */
-
-  renderDataCSS(data) {
-    data.lectures.map((item) => {
-      if (item.category === 'css') {
-        this.renderItem(item);
-      }
-    });
-  }
-  /**
-   * Fer í gegnum gögnin en birtir bara JavaScript fyrirlestra.
-   */
-
-  renderDataJS(data) {
-    data.lectures.map((item) => {
-      if (item.category === 'javascript') {
+      if (item.category === type) {
         this.renderItem(item);
       }
     });
@@ -126,15 +104,15 @@ export default class List {
     const list = new List();
     empty(list.container);
     list.loadLectures()
-      .then((data) => list.renderDataHTML(data));
+      .then((data) => list.renderDataSpecial(data, 'html'));
 
     if (loadSavedTypes().includes('CSS')) {
       list.loadLectures()
-        .then((data) => list.renderDataCSS(data));
+        .then((data) => list.renderDataSpecial(data, 'css'));
     }
     if (loadSavedTypes().includes('Javascript')) {
       list.loadLectures()
-        .then((data) => list.renderDataJS(data));
+        .then((data) => list.renderDataSpecial(data, 'javascript'));
     }
 
     const htmlbutton = document.querySelector('.flokkar__html');
@@ -157,12 +135,12 @@ export default class List {
 
     if (loadSavedTypes().includes('CSS')) {
       list.loadLectures()
-        .then((data) => list.renderDataCSS(data));
+        .then((data) => list.renderDataSpecial(data, 'css'));
     }
     if (loadSavedTypes().includes('Javascript')) {
       list.loadLectures()
-        .then((data) => list.renderDataJS(data));
-    } else {
+        .then((data) => list.renderDataSpecial(data, 'javascript'));
+    } if (!(loadSavedTypes().includes('Javascript') || loadSavedTypes().includes('CSS'))) {
       list.loadLectures()
         .then((data) => list.renderData(data));
     }
@@ -186,15 +164,15 @@ export default class List {
 
     if (loadSavedTypes().includes('HTML')) {
       list.loadLectures()
-        .then((data) => list.renderDataHTML(data));
+        .then((data) => list.renderDataSpecial(data, 'html'));
     }
 
     list.loadLectures()
-      .then((data) => list.renderDataCSS(data));
+      .then((data) => list.renderDataSpecial(data, 'css'));
 
     if (loadSavedTypes().includes('Javascript')) {
       list.loadLectures()
-        .then((data) => list.renderDataJS(data));
+        .then((data) => list.renderDataSpecial(data, 'javascript'));
     }
 
     const cssbutton = document.querySelector('.flokkar__css');
@@ -216,12 +194,12 @@ export default class List {
 
     if (loadSavedTypes().includes('HTML')) {
       list.loadLectures()
-        .then((data) => list.renderDataHTML(data));
+        .then((data) => list.renderDataSpecial(data, 'html'));
     }
     if (loadSavedTypes().includes('Javascript')) {
       list.loadLectures()
-        .then((data) => list.renderDataJS(data));
-    } else {
+        .then((data) => list.renderDataSpecial(data, 'javascript'));
+    } if (!(loadSavedTypes().includes('HTML') || loadSavedTypes().includes('HTML'))) {
       list.loadLectures()
         .then((data) => list.renderData(data));
     }
@@ -245,14 +223,14 @@ export default class List {
 
     if (loadSavedTypes().includes('HTML')) {
       list.loadLectures()
-        .then((data) => list.renderDataHTML(data));
+        .then((data) => list.renderDataSpecial(data, 'html'));
     }
     if (loadSavedTypes().includes('CSS')) {
       list.loadLectures()
-        .then((data) => list.renderDataCSS(data));
+        .then((data) => list.renderDataSpecial(data, 'css'));
     }
     list.loadLectures()
-      .then((data) => list.renderDataJS(data));
+      .then((data) => list.renderDataSpecial(data, 'javascript'));
 
     const jsbutton = document.querySelector('.flokkar__javascript');
     jsbutton.classList.add('flokkar__javascript--hidden');
@@ -273,12 +251,12 @@ export default class List {
 
     if (loadSavedTypes().includes('HTML')) {
       list.loadLectures()
-        .then((data) => list.renderDataHTML(data));
+        .then((data) => list.renderDataSpecial(data, 'html'));
     }
     if (loadSavedTypes().includes('CSS')) {
       list.loadLectures()
-        .then((data) => list.renderDataCSS(data));
-    } else {
+        .then((data) => list.renderDataSpecial(data, 'css'));
+    } if (!(loadSavedTypes().includes('HTML') || loadSavedTypes().includes('CSS'))) {
       list.loadLectures()
         .then((data) => list.renderData(data));
     }
@@ -288,13 +266,7 @@ export default class List {
     const jsbutton = document.querySelector('.flokkar__javascript');
     jsbutton.classList.remove('flokkar__javascript--hidden');
   }
-  /**
-   * Hreinsar localStorage - má sleppa.
-   */
 
-  clearLocalStorage() {
-    clear();
-  }
   /**
    * Á þetta er kallað þegar forsíðan er keyrð, í gegnum index.js.
    * Hleður inn fyrirlestrargögnin og þegar það er komið
@@ -322,8 +294,5 @@ export default class List {
     JSbutton.addEventListener('click', this.showJavascript);
     const JSbuttonGreen = document.querySelector('.flokkar__javascriptGreen');
     JSbuttonGreen.addEventListener('click', this.removeJS);
-
-    const clearLocalst = document.querySelector('.clearLocal'); // Muna að fjarlægja!
-    clearLocalst.addEventListener('click', this.clearLocalStorage); // Muna að fjarlægja!
   }
 }

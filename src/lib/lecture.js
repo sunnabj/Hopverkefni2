@@ -2,7 +2,7 @@
 
 import { generateImage, generateText, generateQuote, generateHeading, generateList, generateCode, generateYoutube } from './converter';
 import { saveLectures, loadSavedLectures, removeLectures } from './storage';
-import { empty, createElement } from './helpers';
+import { createElement } from './helpers';
 
 export default class Lecture {
   constructor() {
@@ -68,7 +68,6 @@ export default class Lecture {
  */
 
   loadLecture(slug) {
-    // this.page = slug;
     // Setjum titil og flokk inn í header.
     const slugArray = slug.split('-');
     const slugCategory = slugArray[0];
@@ -125,7 +124,6 @@ export default class Lecture {
   */
 
   renderData(data) {
-    console.log(data.content);
     data.content.map((item) => {
       this.renderItem(item);
     });
@@ -148,6 +146,7 @@ export default class Lecture {
     }
     else if (item.type === 'text') {
       const textElement = generateText(item.data);
+      textElement.classList.add('text');
       this.container.appendChild(textElement);
     }
     else if (item.type === 'quote') {

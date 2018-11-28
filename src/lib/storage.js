@@ -25,7 +25,6 @@ export function saveLectures(slug) {
     lectureArray.push(slug);
   }
   localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(lectureArray));
-  console.log(lectureArray); // Muna að fjarlægja
 }
 /**
  * Fjarlægir fyrirlestra úr localstorage - gerist þegar ýtt er á fyrirlestur kláraður
@@ -35,7 +34,6 @@ export function removeLectures(slug) {
   if (index > -1) {
     lectureArray.splice(index, 1);
   }
-  console.log(lectureArray); // Muna að taka út
   localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(lectureArray));
 }
 /**
@@ -63,7 +61,6 @@ export function loadSavedTypes() {
 export function saveTypes(type) {
   typeArray.push(type);
   localStorage.setItem(LOCALSTORAGE_KEY2, JSON.stringify(typeArray));
-  console.log(typeArray); // Muna að taka út
 }
 /**
  * Tekur út týpur af forsíðu, gerist þegar maður hakar aftur í þær
@@ -73,6 +70,5 @@ export function removeTypes(type) {
   if (index > -1) {
     typeArray.splice(index, 1);
   }
-  console.log(typeArray); // Muna að taka út.
   localStorage.setItem(LOCALSTORAGE_KEY2, JSON.stringify(typeArray));
 }
