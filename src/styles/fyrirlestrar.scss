@@ -9,6 +9,12 @@
   }
 }
 
+.fyrirlestur__headerimg {
+  object-fit: cover;
+  position: relative;
+  height: 50vh;
+}
+
 .youtube {
   display: flex;
   justify-content: center;

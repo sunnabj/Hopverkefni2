@@ -1,155 +1,155 @@
 @import "config.scss";
 
-.flokkar { 
-    display: flex;
-    justify-content: space-evenly;
+.flokkar {
+  display: flex;
+  justify-content: space-evenly;
 }
+
 .flokkar__html--hidden {
-    display: none;
+  display: none;
 }
 
 .flokkar__htmlGreen--hidden {
-    display: none;
+  display: none;
 }
 
 .flokkar__css--hidden {
-    display: none;
+  display: none;
 }
 
 .flokkar__cssGreen--hidden {
-    display: none;
+  display: none;
 }
 
 .flokkar__javascript--hidden {
-    display: none;
+  display: none;
 }
 
 .flokkar__javascriptGreen--hidden {
-    display: none;
+  display: none;
 }
 
 button {
-    // width: 6 * $gutter;
-    // height: 100%;
-    // margin-right: ($gutter / 4);
-    // margin-left: $gutter / 4;
-    background-color: $color-grar1;
-    border: $color-grar1;
-    border-radius: 10px;
-    transition: background-color $transition;
-    padding: $gutter/2;
-    font-family: $font-heading;
-    font-weight: bold;
-    margin-bottom: $gutter;
-    font-size: 24px;
+  background-color: $color-grar1;
+  border: $color-grar1;
+  border-radius: 10px;
+  transition: background-color $transition;
+  padding: $gutter/2;
+  margin-bottom: $gutter;
+  font-family: $font-heading;
+  font-weight: bold;
+  font-size: 24px;
 
-    &:hover {
-        background-color: $color-grar3;
-        border-color: $color-grar3;
-    }
+  &:hover {
+    background-color: $color-grar3;
+    border-color: $color-grar3;
+  }
 }
+
 .flokkar__htmlGreen {
-        background-color: $color-graenn1;
-        border-color: $color-graenn1;
-    &:hover {
-        background-color: $color-graenn2;
-        border-color: $color-graenn2;
-    }
+  background-color: $color-graenn1;
+  border-color: $color-graenn1;
+
+  &:hover {
+    background-color: $color-graenn2;
+    border-color: $color-graenn2;
+  }
 }
+
 .flokkar__cssGreen {
-    background-color: $color-graenn1;
-    border-color: $color-graenn1;
-&:hover {
+  background-color: $color-graenn1;
+  border-color: $color-graenn1;
+
+  &:hover {
     background-color: $color-graenn2;
     border-color: $color-graenn2;
+  }
 }
-}
+
 .flokkar__javascriptGreen {
-    background-color: $color-graenn1;
-    border-color: $color-graenn1;
-    &:hover {
+  background-color: $color-graenn1;
+  border-color: $color-graenn1;
+
+  &:hover {
     background-color: $color-graenn2;
     border-color: $color-graenn2;
-}
+  }
 }
 
 .fyrirlestur__titlecat {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
+
 .fyrirlestur {
-    @media (min-width: 500px) {
-        @include columns(6);
-        display: flex;
-        flex-direction: column;
-        //  margin-right: 0px;
-    }
-    @media (min-width: 900px) {
-        @include columns(4);
-    }
+  @media (min-width: 500px) {
+    @include columns(6);
+    display: flex;
+    margin-right: 5px;
+    margin-left: -5px;
+    flex-direction: column;
+  }
+
+  @media (min-width: 900px) {
+    @include columns(4);
+  }
 }
 
 .list {
-    @media (min-width: 500px) {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-    }
-}
-.check {
+  @media (min-width: 500px) {
     display: flex;
-    //position: absolute;
-    justify-content: flex-end;
-    //align-self: center;
-    //flex-grow: 1;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
+.check {
+  font-size: 32px;
+  color: $color-graenn1;
+  font-weight: bold;
 }
 
 .fyrirlestur__text {
-    background-color: $color-grar1;
-    margin-bottom: 2*$gutter;
-    padding-top: $gutter;
-    padding-bottom: 0.5*$gutter;
-    padding-left: 0.5*$gutter;
-    //max-width: 443px;
-    display: flex;
-    flex-direction: row;
-    position: relative;
-    font-size: 14px;
-    @include columns(12);
-    //position:absolute;
-    @media (min-width: 500px) {
-        
-    }
+  background-color: $color-grar1;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 0.5*$gutter;
+  padding-top: $gutter;
+  padding-bottom: 0.5*$gutter;
+  margin-bottom: 2*$gutter;
+  font-size: 14px;
+  @include columns(12);
 }
+
 .category {
-    font-family: $font-heading;
-    text-transform: uppercase;
-    font-size: 12px;
+  font-family: $font-heading;
+  font-size: 12px;
+  text-transform: uppercase;
 }
+
 a {
-    color: $color-svartur;
-    text-decoration: none;
-    font-family: $font-heading;
+  color: $color-svartur;
+  font-family: $font-heading;
+  text-decoration: none;
 }
+
 .thumbnail {
-    padding-left: 0px;
+  padding-right: 0px; /* stylelint-disable-line */
+  padding-left: 0px; /* stylelint-disable-line */
 }
+
 .greydiv {
+  background-color: $color-grar1;
+  @media (min-width: 500px) {
+    padding-top: 60%;
     background-color: $color-grar1;
-    @media (min-width:500px) {
-        background-color: $color-grar1;
-        // margin-bottom: 2*$gutter;
-        // padding-top: $gutter;
-        // padding-bottom: 0.5*$gutter;
-        // padding-left: 0.5*$gutter;
-        padding-top: 60%;
-        // padding-bottom: $gutter/2;
-    }
+  }
 }
-.fyrirlestur:nth-of-type(8){
-    // background-color: pink;
-    // color: pink;
-    .fyrirlestur__text {
-        padding-top: 0;
-    }
+
+.fyrirlestur:nth-of-type(8) {
+  .fyrirlestur__text {
+    padding-top: 0;
+  }
 }
