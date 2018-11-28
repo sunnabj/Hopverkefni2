@@ -40,7 +40,7 @@ button {
   border-radius: 10px;
   transition: background-color $transition;
 
-  &:hover {
+  &:hover { /* stylelint-disable-line */
     background-color: $color-grar3;
     border-color: $color-grar3;
   }
@@ -129,7 +129,7 @@ button {
   text-transform: uppercase;
 }
 
-a {
+a { /* stylelint-disable-line */
   font-family: $font-heading;
   color: $color-svartur;
   text-decoration: none;
