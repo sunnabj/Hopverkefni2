@@ -49,15 +49,21 @@ styles.css heldur utan um allt útlit og er inni í dist möppunni. Útlitinu er
 
 Javascript skrárnar eru flestar inni í src/lib möppunni, en index.js er bara beint inni í src. Hér koma nánari upplýsingar um hverja skrá:
 
-* index.js er keyrð þegar vefsíðan keyrir, og býr ýmist til Lecture hlut og loadar viðkomandi fyrirlestri, eða List hlut og loadar forsíðunni/fyrirlestrayfirlitinu, eftir því hvað við á.
-* list.js hleður inn fyrirlestrayfirlitsgögnum og birtir þau á viðeigandi hátt, sem thumbnails með flokk og titil sem er tengill yfir á viðkomandi fyrirlestur.
+* _index.js_ 
+    * Er keyrð þegar vefsíðan keyrir, og býr ýmist til Lecture hlut og loadar viðkomandi fyrirlestri, eða List hlut og loadar forsíðunni/fyrirlestrayfirlitinu, eftir því hvað við á.
+* _list.js_ 
+    * Hleður inn fyrirlestrayfirlitsgögnum og birtir þau á viðeigandi hátt, sem thumbnails með flokk og titil sem er tengill yfir á viðkomandi fyrirlestur.
     * Sér um virkni á síutökkum efst þar sem hægt er að velja að birta fyrirlestra úr ákveðnum flokki/flokkum.
-* lecture.js hleður inn gögnum fyrir ákveðinn fyrirlestur og birtir sérhverja gerð gagna á viðeigandi hátt. 
+* _lecture.js_ 
+    * Hleður inn gögnum fyrir ákveðinn fyrirlestur og birtir sérhverja gerð gagna á viðeigandi hátt. 
     * Birtir einnig viðeigandi content í header eftir því hvaða fyrirlestur er um að ræða.
     * Sér um "Klára fyrirlestur" virknina og vistar eða fjarlægir kláraða/afkláraða fyrirlestra úr localStorage.
-* converter.js er hjálparskjal sem inniheldur föll sem sjá um að búa til element fyrir hverja gerð gagna jafnt á fyrirlestrar- sem og yfirlitssíðu.
-* storage.js sér um að sækja, vista og fjarlægja gögn úr localStorage. Sér helst um vistaða fyrirlestra, en er einnig nýtt til að ákvarða hvaða fyrirlestra skal birta í síunni á yfirlitssíðu.
-* helpers.js inniheldur tvö lítil hjálparföll sem nýtast hér og þar, við að búa til nýtt element og til að tæma containers.
+* _converter.js_ 
+    * Hjálparskjal sem inniheldur föll sem sjá um að búa til element fyrir hverja gerð gagna jafnt á fyrirlestrar- sem og yfirlitssíðu.
+* _storage.js_ 
+    * Sér um að sækja, vista og fjarlægja gögn úr localStorage. Sér helst um vistaða fyrirlestra, en er einnig nýtt til að ákvarða hvaða fyrirlestra skal birta í síunni á yfirlitssíðu.
+* _helpers.js_ 
+    * Inniheldur tvö lítil hjálparföll sem nýtast hér og þar, við að búa til nýtt element og til að tæma containers.
 
 ### Annað ###
 
