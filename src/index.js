@@ -1,3 +1,5 @@
+/* eslint linebreak-style: ["error", "windows"] */
+
 import List from './lib/list';
 import Lecture from './lib/lecture';
 
