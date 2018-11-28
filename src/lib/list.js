@@ -1,4 +1,6 @@
-import { empty, createElement } from './helpers';
+/* eslint linebreak-style: ["error", "windows"] */
+
+import { empty } from './helpers';
 import { generateImage, generateTitle, generateCategory } from './converter';
 import { clear, saveTypes, removeTypes, loadSavedTypes, loadSavedLectures } from './storage';
 
@@ -21,8 +23,19 @@ export default class List {
         return res.json();
       });
   }
+
   /**
-   * Fer í gegnum gögnin en birtir bara fyrirlestra með flokk html
+  * Fer í gegnum öll fyrirlestrargögnin og birtir þau
+  */
+
+  renderData(data) {
+    data.lectures.map((item) => {
+      this.renderItem(item);
+    });
+  }
+
+  /**
+   * Fer í gegnum gögnin en birtir bara HTML fyrirlestra.
    */
 
   renderDataHTML(data) {
@@ -33,7 +46,7 @@ export default class List {
     });
   }
   /**
-   * Fer í gegnum gögnin en birtir bara fyrirlestra með flokk css
+   * Fer í gegnum gögnin en birtir bara CSS fyrirlestra.
    */
 
   renderDataCSS(data) {
@@ -44,7 +57,7 @@ export default class List {
     });
   }
   /**
-   * Fer í gegnum gögnin en birtir bara fyrirlestra með flokk javascript 
+   * Fer í gegnum gögnin en birtir bara JavaScript fyrirlestra.
    */
 
   renderDataJS(data) {
@@ -55,17 +68,6 @@ export default class List {
     });
   }
 
-  /**
-  * Fer í gegnum öll fyrirlestrargögnin og birtir þau 
-  */ 
-
-  renderData(data) {
-    console.log(data.lectures);
-    
-    data.lectures.map((item) => {
-      this.renderItem(item);
-    });
-  }
   /**
    * Býr til div og klasanöfn fyrir hverja gerð af hlutum sem birtast á forsíðunni.
    */
@@ -111,6 +113,36 @@ export default class List {
       textdiv.appendChild(checkdiv);
     }
   }
+
+  /**
+   * Event handler ef HTML sían er valin efst.
+   * Búinn er til nýr listi sem hleður inn HTML gögnum og einnig
+   * CSS og/eða javascript gögnum ef þau eru valin.
+   * Birtir svo grænan HTML takka og fjarlægir þann eðlilega.
+   */
+
+  showHTML(e) {
+    saveTypes('HTML');
+    const list = new List();
+    empty(list.container);
+    list.loadLectures()
+      .then((data) => list.renderDataHTML(data));
+
+    if (loadSavedTypes().includes('CSS')) {
+      list.loadLectures()
+        .then((data) => list.renderDataCSS(data));
+    }
+    if (loadSavedTypes().includes('Javascript')) {
+      list.loadLectures()
+        .then((data) => list.renderDataJS(data));
+    }
+
+    const htmlbutton = document.querySelector('.flokkar__html');
+    htmlbutton.classList.add('flokkar__html--hidden');
+    const htmlbuttonNew = document.querySelector('.flokkar__htmlGreen');
+    htmlbuttonNew.classList.remove('flokkar__htmlGreen--hidden');
+  }
+
   /**
  * Event handler ef hætt er að velja HTML síuna efst.
  * Búinn er til nýr listi sem hleður inn CSS gögnum og/eða Javascript
@@ -130,8 +162,7 @@ export default class List {
     if (loadSavedTypes().includes('Javascript')) {
       list.loadLectures()
         .then((data) => list.renderDataJS(data));
-    }
-    else {
+    } else {
       list.loadLectures()
         .then((data) => list.renderData(data));
     }
@@ -140,64 +171,6 @@ export default class List {
     htmlbuttonNew.classList.add('flokkar__htmlGreen--hidden');
     const htmlbutton = document.querySelector('.flokkar__html');
     htmlbutton.classList.remove('flokkar__html--hidden');
-  }
-  /**
-   * Event handler ef HTML sían er valin efst.
-   * Búinn er til nýr listi sem hleður inn HTML gögnum og einnig
-   * CSS og/eða javascript gögnum ef þau eru valin.
-   * Birtir svo grænan HTML takka og fjarlægir þann eðlilega.
-   */
-
-  showHTML(e) {
-    saveTypes('HTML');
-    const list = new List();
-    empty(list.container);
-    list.loadLectures()
-      .then((data) => list.renderDataHTML(data));
-    
-    if (loadSavedTypes().includes('CSS')) {
-      list.loadLectures()
-        .then((data) => list.renderDataCSS(data));
-    }
-    if (loadSavedTypes().includes('Javascript')) {
-      list.loadLectures()
-        .then((data) => list.renderDataJS(data));
-    }
-
-    const htmlbutton = document.querySelector('.flokkar__html');
-    htmlbutton.classList.add('flokkar__html--hidden');
-    const htmlbuttonNew = document.querySelector('.flokkar__htmlGreen');
-    htmlbuttonNew.classList.remove('flokkar__htmlGreen--hidden');
-  }
-  /**
- * Event handler ef hætt er að velja CSS síuna efst.
- * Búinn er til nýr listi sem hleður inn HTML gögnum og/eða Javascript
- * gögnum ef þau eru valin, en ef ekkert er valið er öllu hlaðið inn.
- * Birtir svo eðlilega CSS takkann og fjarlægir þann græna.
- */
-
-  removeCSS(e) {
-    removeTypes('CSS');
-    const list = new List();
-    empty(list.container);
-
-    if (loadSavedTypes().includes('HTML')) {
-      list.loadLectures()
-        .then((data) => list.renderDataHTML(data));
-    }
-    if (loadSavedTypes().includes('Javascript')) {
-      list.loadLectures()
-        .then((data) => list.renderDataJS(data));
-    }
-    else {
-      list.loadLectures()
-        .then((data) => list.renderData(data));
-    }
-
-    const cssbuttonNew = document.querySelector('.flokkar__cssGreen');
-    cssbuttonNew.classList.add('flokkar__cssGreen--hidden');
-    const cssbutton = document.querySelector('.flokkar__css');
-    cssbutton.classList.remove('flokkar__css--hidden');
   }
   /**
    * Event handler ef CSS sían er valin efst.
@@ -230,14 +203,14 @@ export default class List {
     cssbuttonNew.classList.remove('flokkar__cssGreen--hidden');
   }
   /**
- * Event handler ef hætt er að velja Javascript síuna efst.
- * Búinn er til nýr listi sem hleður inn HTML gögnum og/eða CSS
+ * Event handler ef hætt er að velja CSS síuna efst.
+ * Búinn er til nýr listi sem hleður inn HTML gögnum og/eða Javascript
  * gögnum ef þau eru valin, en ef ekkert er valið er öllu hlaðið inn.
- * Birtir svo eðlilega Javascript takkann og fjarlægir þann græna.
+ * Birtir svo eðlilega CSS takkann og fjarlægir þann græna.
  */
 
-  removeJS(e) {
-    removeTypes('Javascript');
+  removeCSS(e) {
+    removeTypes('CSS');
     const list = new List();
     empty(list.container);
 
@@ -245,21 +218,19 @@ export default class List {
       list.loadLectures()
         .then((data) => list.renderDataHTML(data));
     }
-    if (loadSavedTypes().includes('CSS')) {
+    if (loadSavedTypes().includes('Javascript')) {
       list.loadLectures()
-        .then((data) => list.renderDataCSS(data));
-    }
-    else {
+        .then((data) => list.renderDataJS(data));
+    } else {
       list.loadLectures()
         .then((data) => list.renderData(data));
     }
 
-    const jsbuttonNew = document.querySelector('.flokkar__javascriptGreen');
-    jsbuttonNew.classList.add('flokkar__javascriptGreen--hidden');
-    const jsbutton = document.querySelector('.flokkar__javascript');
-    jsbutton.classList.remove('flokkar__javascript--hidden');
+    const cssbuttonNew = document.querySelector('.flokkar__cssGreen');
+    cssbuttonNew.classList.add('flokkar__cssGreen--hidden');
+    const cssbutton = document.querySelector('.flokkar__css');
+    cssbutton.classList.remove('flokkar__css--hidden');
   }
-
   /**
    * Event handler ef Javascript sían er valin efst.
    * Búinn er til nýr listi sem hleður inn Javascript gögnum og einnig
@@ -288,6 +259,38 @@ export default class List {
     const jsbuttonNew = document.querySelector('.flokkar__javascriptGreen');
     jsbuttonNew.classList.remove('flokkar__javascriptGreen--hidden');
   }
+  /**
+ * Event handler ef hætt er að velja Javascript síuna efst.
+ * Búinn er til nýr listi sem hleður inn HTML gögnum og/eða CSS
+ * gögnum ef þau eru valin, en ef ekkert er valið er öllu hlaðið inn.
+ * Birtir svo eðlilega Javascript takkann og fjarlægir þann græna.
+ */
+
+  removeJS(e) {
+    removeTypes('Javascript');
+    const list = new List();
+    empty(list.container);
+
+    if (loadSavedTypes().includes('HTML')) {
+      list.loadLectures()
+        .then((data) => list.renderDataHTML(data));
+    }
+    if (loadSavedTypes().includes('CSS')) {
+      list.loadLectures()
+        .then((data) => list.renderDataCSS(data));
+    } else {
+      list.loadLectures()
+        .then((data) => list.renderData(data));
+    }
+
+    const jsbuttonNew = document.querySelector('.flokkar__javascriptGreen');
+    jsbuttonNew.classList.add('flokkar__javascriptGreen--hidden');
+    const jsbutton = document.querySelector('.flokkar__javascript');
+    jsbutton.classList.remove('flokkar__javascript--hidden');
+  }
+  /**
+   * Hreinsar localStorage - má sleppa.
+   */
 
   clearLocalStorage() {
     clear();
@@ -309,7 +312,7 @@ export default class List {
     HTMLbutton.addEventListener('click', this.showHTML);
     const HTMLbuttonGreen = document.querySelector('.flokkar__htmlGreen');
     HTMLbuttonGreen.addEventListener('click', this.removeHTML);
-    
+
     const CSSbutton = document.querySelector('.flokkar__css');
     CSSbutton.addEventListener('click', this.showCSS);
     const CSSbuttonGreen = document.querySelector('.flokkar__cssGreen');

@@ -1,3 +1,5 @@
+/* eslint linebreak-style: ["error", "windows"] */
+
 import { generateImage, generateText, generateQuote, generateHeading, generateList, generateCode, generateYoutube } from './converter';
 import { saveLectures, loadSavedLectures, removeLectures } from './storage';
 import { empty, createElement } from './helpers';
@@ -8,6 +10,9 @@ export default class Lecture {
     this.url = '../lectures.json';
     this.header = document.querySelector('.header');
   }
+  /**
+   * Finnur réttan titil á fyrirlestri út frá slug
+   */
 
   findTitle(slug) {
     let title;
@@ -57,13 +62,14 @@ export default class Lecture {
   }
 
 /**
- * 
- * @param {Kóði fyrir slóðina á tiltekna vefsíðu} slug 
  * Hleður inn gögnum fyrir hvern fyrirlestur.
+ * slug = Kóði fyrir slóðina á tiltekinn fyrirlestur.
+ * 
  */
 
   loadLecture(slug) {
-    this.page = slug;
+    // this.page = slug;
+    // Setjum titil og flokk inn í header.
     const slugArray = slug.split('-');
     const slugCategory = slugArray[0];
     const slugTitle = slugArray[1];
@@ -77,6 +83,8 @@ export default class Lecture {
     titlediv.appendChild(category);
     titlediv.appendChild(title);
 
+    // Athugum hvort fyrirlesturinn sé vistaður - birtum "Fyrirlestur kláraður"
+    // neðst ef svo er, annars "Klára fyrirlestur"
     const savedArray = loadSavedLectures();
     if (savedArray.includes(document.querySelector('.header__h1').textContent)) {
       const finishLecture = document.querySelector('.footer__finish');
@@ -85,6 +93,10 @@ export default class Lecture {
       finishedLecture.classList.remove('footer__finished--hidden');
     }
 
+    /**
+     * Nær í fyrirlestrana og ef það tekst þá er gögnum skilað fyrir 
+     * viðeigandi fyrirlestur, út frá slug.
+     */
     return fetch(this.url)
       .then((res) => {
         if (!res.ok) {
@@ -97,6 +109,7 @@ export default class Lecture {
         if (!found) {
           throw new Error('Fyrirlestur fannst ekki');
         }
+        // Birtum rétta mynd í header.
         const headerImage = document.querySelector('.header__image');
         const headerimageElement = createElement('img');
         headerimageElement.src = found.image;
@@ -108,7 +121,7 @@ export default class Lecture {
   }
   /**
   *
-  * Fer í gegnum öll JSON gögnin og mappar þau
+  * Fer í gegnum öll JSON gögnin og mappar þau.
   */
 
   renderData(data) {
@@ -118,6 +131,10 @@ export default class Lecture {
     });
 
   }
+  /**
+   * Fer í gegnum hvern item í fyrirlestrargagnafylkinu og meðhöndlar þá
+   * mismunandi eftir því hvers konar gögn er um að ræða.
+   */
 
   renderItem(item) {
     if (item.type === 'image') {
@@ -142,6 +159,7 @@ export default class Lecture {
       headingElement.classList.add('heading');
       this.container.appendChild(headingElement);
     }
+    // Búum til óraðaðan lista og bætum við sérhverju staki í honum sem li.
     else if (item.type === 'list') {
       const listElement = document.createElement('ul');
       listElement.classList.add('list');
@@ -165,13 +183,11 @@ export default class Lecture {
     }
   }
 
-  unfinishLecture(e) {
-    const finishedLecture = document.querySelector('.footer__finished');
-    finishedLecture.classList.add('footer__finished--hidden');
-    const unfinishedLecture = document.querySelector('.footer__finish');
-    unfinishedLecture.classList.remove('footer__finish--hidden');
-    removeLectures(document.querySelector('.header__h1').textContent);
-  }
+  /**
+   * Atburðarhandler fyrir að klára fyrirlestur.
+   * Setjum inn "Fyrirlestur kláraður" og felum "Klára fyrirlestur"
+   * Vistum svo fyrirlesturinn.
+   */
 
   finishLecture(e) {
     const finishLecture = document.querySelector('.footer__finish');
@@ -180,10 +196,27 @@ export default class Lecture {
     finishedLecture.classList.remove('footer__finished--hidden');
     saveLectures(document.querySelector('.header__h1').textContent);
   }
+  /**
+   * Atburðarhandler fyrir að taka til baka að hafa klárað fyrirlestur.
+   * Setjum inn "Klára fyrirlestur" og felum "Fyrirlestur kláraður"
+   * Fjarlægjum fyrirlesturinn úr localStorage.
+   */
 
+  unfinishLecture(e) {
+    const finishedLecture = document.querySelector('.footer__finished');
+    finishedLecture.classList.add('footer__finished--hidden');
+    const unfinishedLecture = document.querySelector('.footer__finish');
+    unfinishedLecture.classList.remove('footer__finish--hidden');
+    removeLectures(document.querySelector('.header__h1').textContent);
+  }
+
+  /**
+   * Hleður inn fyrirlestrum - kallað á í index.js.
+   * Hleður inn vistuðum fyrirlestrum og býr til event handlera fyrir að klára
+   * og "afklára" fyrirlestur.
+   */
   load() {
     const qs = new URLSearchParams(window.location.search);
-    console.log(qs);
     const slug = qs.get('slug');
 
     loadSavedLectures();

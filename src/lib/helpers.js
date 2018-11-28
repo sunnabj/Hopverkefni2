@@ -1,3 +1,5 @@
+/* eslint linebreak-style: ["error", "windows"] */
+
 export function empty(element) {
   while (element.firstChild) {
     element.removeChild(element.firstChild);

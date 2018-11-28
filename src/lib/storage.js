@@ -1,6 +1,8 @@
+/* eslint linebreak-style: ["error", "windows"] */
+
 const LOCALSTORAGE_KEY = 'saved_lectures'; // Heldur utan um kláraða fyrirlestra
 let lectureArray = []; // Fylki fyrir kláraða fyrirlestra
-const LOCALSTORAGE_KEY2 = 'saved_types' // Heldur utan um týpur sem er búið að velja (HTML, CSS eða JS)
+const LOCALSTORAGE_KEY2 = 'saved_types'; // Heldur utan um týpur sem er búið að velja (HTML, CSS eða JS)
 let typeArray = []; // Fylki fyrir týpurnar
 
 /**
