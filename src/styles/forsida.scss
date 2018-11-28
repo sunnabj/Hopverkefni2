@@ -67,7 +67,7 @@ button {
 .flokkar__javascriptGreen {
     background-color: $color-graenn1;
     border-color: $color-graenn1;
-&:hover {
+    &:hover {
     background-color: $color-graenn2;
     border-color: $color-graenn2;
 }
@@ -77,22 +77,23 @@ button {
     display: flex;
     flex-direction: column;
 }
-.list {
-    @media (min-width: 500px) {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-    }
-}
 .fyrirlestur {
     @media (min-width: 500px) {
         @include columns(6);
         display: flex;
         flex-direction: column;
-       //  margin-right: 0px;
+        //  margin-right: 0px;
     }
     @media (min-width: 900px) {
         @include columns(4);
+    }
+}
+
+.list {
+    @media (min-width: 500px) {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
     }
 }
 .check {
@@ -119,7 +120,7 @@ button {
     @media (min-width: 500px) {
         
     }
-    }
+}
 .category {
     font-family: $font-heading;
     text-transform: uppercase;
@@ -135,13 +136,20 @@ a {
 }
 .greydiv {
     background-color: $color-grar1;
-    margin-bottom: 2*$gutter;
-    padding-top: $gutter;
-    padding-bottom: 0.5*$gutter;
-    padding-left: 0.5*$gutter;
     @media (min-width:500px) {
         background-color: $color-grar1;
-        padding-top: 66%;
-        padding-bottom: $gutter/2;
+        // margin-bottom: 2*$gutter;
+        // padding-top: $gutter;
+        // padding-bottom: 0.5*$gutter;
+        // padding-left: 0.5*$gutter;
+        padding-top: 60%;
+        // padding-bottom: $gutter/2;
+    }
+}
+.fyrirlestur:nth-of-type(8){
+    // background-color: pink;
+    // color: pink;
+    .fyrirlestur__text {
+        padding-top: 0;
     }
 }
