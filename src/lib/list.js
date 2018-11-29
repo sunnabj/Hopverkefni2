@@ -9,7 +9,7 @@ import {
 export default class List {
   constructor() {
     this.container = document.querySelector('.list');
-    this.url = '../../lectures.json';
+    this.url = 'lectures.json';
   }
 
   /**
@@ -22,7 +22,6 @@ export default class List {
         if (!res.ok) {
           throw new Error('Gat ekki sótt fyrirlestur');
         }
-        console.log(res);
         return res.json();
       });
   }

@@ -17,7 +17,7 @@ export function generateImage(imagePath) {
     return greydiv;
   }
   const imageElement = createElement('img');
-  imageElement.src = `../../${imagePath}`;
+  imageElement.src = `${imagePath}`;
   imageElement.classList.add('thumbnail');
   return imageElement;
 }
@@ -27,7 +27,7 @@ export function generateImage(imagePath) {
  */
 export function generateTitle(title, slug) {
   const link = document.createElement('a');
-  link.href = `/fyrirlestur.html?slug=${slug}`;
+  link.href = `fyrirlestur.html?slug=${slug}`;
   const titleElement = createElement('h2', title);
 
   link.appendChild(titleElement);
