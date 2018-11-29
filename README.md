@@ -3,6 +3,14 @@
 
 ## Keyrsla ##
 
+Þegar verkefni er sótt þarf mögulega að framkvæma git pull skipun á eftir git clone.
+
+```bash
+
+git clone https://github.com/sunnabj/Hopverkefni2
+git pull
+```
+
 Til að keyra verkefnið þarf að gera eftirfarandi skipanir:
 
 ```bash
