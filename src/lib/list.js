@@ -22,6 +22,7 @@ export default class List {
         if (!res.ok) {
           throw new Error('Gat ekki sótt fyrirlestur');
         }
+        console.log(res);
         return res.json();
       });
   }
