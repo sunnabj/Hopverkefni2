@@ -37,7 +37,7 @@ export function removeLectures(slug) {
   localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(lectureArray));
 }
 /**
- * Hreinsar localstorage, þurfum í sjálfu sér ekki á að halda
+ * Hreinsar localstorage, þurfum í sjálfu sér ekki á að halda, nema í þróun.
  */
 export function clear() {
   window.localStorage.clear();

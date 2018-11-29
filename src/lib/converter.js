@@ -5,6 +5,7 @@ import { createElement } from './helpers';
 /**
  * Hér koma föll sem sjá um að búa til element fyrir sérhverja týpu af elementum á síðunni
  */
+
 /**
  * Býr til element fyrir myndir. Ef mynd er ekki til staðar, eins og í nokkrum tilvikum
  * á forsíðu er búið til annað div í staðinn sem er breytt í gráan kassa.

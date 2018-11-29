@@ -74,7 +74,7 @@ export default class List {
     titlecatdiv.classList.add('fyrirlestur__titlecat');
     textdiv.appendChild(titlecatdiv);
 
-    // Hér koma div fyrir titil og flokk
+    // Hér koma div fyrir titil annars vegar og flokk hins vegar
     const categorydiv = document.createElement('div');
     categorydiv.classList.add('category');
     titlecatdiv.appendChild(categorydiv);
@@ -278,8 +278,8 @@ export default class List {
 
   /**
    * Á þetta er kallað þegar forsíðan er keyrð, í gegnum index.js.
-   * Hleður inn fyrirlestrargögnin og þegar það er komið
-   * er farið í gegnum þau og fyrirlestraryfirlitið smíðað
+   * Hleður inn fyrirlestrargögnunum og þegar það er komið
+   * er farið í gegnum þau og fyrirlestraryfirlitið smíðað.
    * Býr einnig til event handlera fyrir takkana uppi sem sjá um
    * að sía eftir fyrirlestrargerð.
    */
